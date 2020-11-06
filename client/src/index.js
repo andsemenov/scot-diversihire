@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import About from "./components/About";
 import Status from "./components/Status";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import ApplicantLogin from "./components/ApplicantLogin";
 
 const Routes = () => {
   return (
@@ -32,6 +33,7 @@ const Routes = () => {
           <Route path="/" exact component={Home} />
           <Route path="/about/" component={About} />
           <Route path="/status/" component={Status} />
+          <Route path="/applicant_login" component={ApplicantLogin} />
         </div>
       </div>
     </Router>
