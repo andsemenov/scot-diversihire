@@ -7,6 +7,7 @@ const ApplicantLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
 
   const handleChange = event => {
     if (event.target.name === "email") {
@@ -25,13 +26,15 @@ const ApplicantLogin = () => {
 
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(data.user));
-        document.location.reload();
+        // document.location.reload();
+        setSuccess(true);
       })
       .catch(() => {
         setError(true);
+        setSuccess(false);
       });
   };
-
+  console.log(success);
   return (
     <Form>
       <Form.Field>
@@ -55,13 +58,11 @@ const ApplicantLogin = () => {
       <Button primary onClick={loginSubmit} type="submit">
         Login
       </Button>
-      {error ? (
-        <div>Incorrect email or password</div>
-      ) : (
-        <Redirect to="/applicant_create_profile" />
-      )}
+      {error ? <div>Incorrect email or password</div> : null}
+      {success ? <Redirect to="/applicant_create_profile" /> : null}
     </Form>
   );
 };
 
 export default ApplicantLogin;
+//<Redirect to="/applicant_create_profile" />
