@@ -22,11 +22,8 @@ const ApplicantLogin = () => {
     signApi(email, password)
       .then(data => {
         const token = data.token;
-        console.log(token);
-
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(data.user));
-        // document.location.reload();
         setSuccess(true);
       })
       .catch(() => {
@@ -34,7 +31,7 @@ const ApplicantLogin = () => {
         setSuccess(false);
       });
   };
-  console.log(success);
+
   return (
     <Form>
       <Form.Field>
@@ -65,4 +62,3 @@ const ApplicantLogin = () => {
 };
 
 export default ApplicantLogin;
-//<Redirect to="/applicant_create_profile" />
