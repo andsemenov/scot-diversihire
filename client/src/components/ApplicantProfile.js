@@ -11,7 +11,7 @@ const ApplicantProfile = () => {
     type_employment: ""
   });
 
-  const [profileCreated, setProfileCreated] = useState(false);
+  const [profileCreated, setProfileCreated] = useState("");
 
   const handleChange = (event, result) => {
     const { name, value } = result || event.target;
