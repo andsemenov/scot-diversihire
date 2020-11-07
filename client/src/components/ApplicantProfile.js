@@ -11,7 +11,7 @@ const ApplicantProfile = () => {
     type_employment: ""
   });
 
-  const [profileCreated, setProfileCreated] = useState("");
+  const [profileCreated, setProfileCreated] = useState(null);
 
   const handleChange = (event, result) => {
     const { name, value } = result || event.target;
@@ -26,7 +26,7 @@ const ApplicantProfile = () => {
 
   const createProfile = () => {
     newProfile(profileData).then(data => {
-      if (data) setProfileCreated(true);
+      setProfileCreated(data);
     });
   };
 
@@ -62,11 +62,10 @@ const ApplicantProfile = () => {
       <Form.Button primary onClick={createProfile} type="submit">
         Create Profile
       </Form.Button>
-      {profileCreated ? (
-        <Redirect to="/profile_creation_successful" />
-      ) : (
+      {profileCreated ? <Redirect to="/profile_creation_successful" /> : null}
+      {profileCreated === false ? (
         <div>Error! You have NOT created a profile</div>
-      )}
+      ) : null}
     </Form>
   );
 };
