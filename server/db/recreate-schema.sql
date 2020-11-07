@@ -2,7 +2,7 @@
 
 DROP TABLE if exists work_experience;
 DROP TABLE if exists education;
-DROP TABLE if exists profiles;
+DROP TABLE if exists profile;
 DROP TABLE if exists users;
 
 
@@ -14,31 +14,32 @@ CREATE TABLE users (
   password VARCHAR(200) NOT NULL
 );
 
-CREATE TABLE profiles (
+CREATE TABLE profile (
   id  SERIAL PRIMARY KEY,
-  profile_public_id  INT REFERENCES users(id),
-  applicant_id       VARCHAR(200) NOT NULL,
-  location           VARCHAR(100) NOT NULL,
-  bio                VARCHAR(200) NOT NULL,
-  job_title          VARCHAR(50) NOT NULL
+  profile_public_id  VARCHAR(50),
+  applicant_id       INT REFERENCES users(id),
+  location           VARCHAR(100),
+  bio                TEXT,
+  job_title          VARCHAR(50)
+
 );
 
 CREATE TABLE education (
 id  SERIAL PRIMARY KEY,
-profile_id           INT REFERENCES profiles(id),
-institution          VARCHAR(100) NOT NULL,
-qualification        VARCHAR(100) NOT NULL,
-course_title         VARCHAR(80) NOT NULL,
-start_date           DATE NOT NULL,
-end_date             DATE NOT NULL
+profile_id           INT REFERENCES profile(id),
+institution          VARCHAR(100),
+qualification        VARCHAR(100),
+course_title         VARCHAR(80),
+start_date           DATE,
+end_date             DATE
 );
 
 CREATE TABLE work_experience (
 id  SERIAL PRIMARY KEY,
-profile_id          INT REFERENCES profiles(id),
-company             VARCHAR(100) NOT NULL,
-job_title           VARCHAR(50) NOT NULL,
-description         VARCHAR(250) NOT NULL,
-start_date          DATE NOT NULL,
-end_date            DATE NOT NULL
+profile_id          INT REFERENCES profile(id),
+company             VARCHAR(100),
+job_title           VARCHAR(50),
+description         VARCHAR(250),
+start_date          DATE,
+end_date            DATE
 );
