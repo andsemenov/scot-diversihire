@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "semantic-ui-css/semantic.min.css";
 import "./index.css";
-import Routes from "./Routes";
 import Home from "./components/Home";
 import About from "./components/About";
 import Status from "./components/Status";
