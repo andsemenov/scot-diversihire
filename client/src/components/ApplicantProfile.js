@@ -25,9 +25,8 @@ const ApplicantProfile = () => {
   ];
 
   const createProfile = () => {
-    newProfile(profileData).then(data => {
-      setProfileCreated(data);
-      console.log(data);
+    newProfile(profileData).then(isSuccessful => {
+      setProfileCreated(isSuccessful);
     });
   };
 
@@ -63,10 +62,10 @@ const ApplicantProfile = () => {
       <Form.Button primary onClick={createProfile} type="submit">
         Create Profile
       </Form.Button>
-      {profileCreated ? <Redirect to="/profile_creation_successful" /> : null}
-      {profileCreated === false ? (
+      {profileCreated && <Redirect to="/profile_creation_successful" />}
+      {profileCreated === false && (
         <div>Error! You have NOT created a profile</div>
-      ) : null}
+      )}
     </Form>
   );
 };
