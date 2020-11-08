@@ -6,6 +6,7 @@ const router = express.Router();
 router.post("/", (req, res) => {
   const db_newProfile = req.body;
   createProfile(db_newProfile);
+  res.status(201).send("Profile created");
 });
 
 module.exports = router;

@@ -8,7 +8,7 @@ const ApplicantProfile = () => {
     job_title: "",
     bio: "",
     location: "",
-    type_employment: ""
+    employment_status: ""
   });
 
   const [profileCreated, setProfileCreated] = useState(null);
@@ -27,6 +27,7 @@ const ApplicantProfile = () => {
   const createProfile = () => {
     newProfile(profileData).then(data => {
       setProfileCreated(data);
+      console.log(data);
     });
   };
 
@@ -53,10 +54,10 @@ const ApplicantProfile = () => {
       </Form.Field>
       <Form.Select
         label="Type of employment"
-        name="type_employment"
-        placeholder="Type of employment"
+        name="employment_status"
+        placeholder="Status of employment"
         options={options}
-        value={profileData.type_employment}
+        value={profileData.employment_status}
         onChange={handleChange}
       />
       <Form.Button primary onClick={createProfile} type="submit">
