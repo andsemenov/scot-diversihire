@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 import { newProfile } from "../api/profiles";
+import Experience from "./Experience";
 
 const ApplicantProfile = () => {
   const [profileData, setProfileData] = useState({
@@ -11,6 +12,16 @@ const ApplicantProfile = () => {
     employment_status: ""
   });
 
+  const [experienceData, setExperienceData] = useState([
+    {
+      company: "",
+      job_title: "",
+      job_description: "",
+      start_date: "",
+      end_date: ""
+    }
+  ]);
+
   const [profileCreated, setProfileCreated] = useState(null);
 
   const handleChange = (event, result) => {
@@ -18,6 +29,10 @@ const ApplicantProfile = () => {
     setProfileData({ ...profileData, [name]: value });
   };
 
+  const handleExperienceChange = (event, index) => {
+    const { name, value } = event.target;
+    setExperienceData([{ ...experienceData[index], [name]: value }]);
+  };
   const options = [
     { key: "1", text: "Looking for full time", value: "full_time" },
     { key: "2", text: "Looking for part time", value: "part_time" },
@@ -25,7 +40,8 @@ const ApplicantProfile = () => {
   ];
 
   const createProfile = () => {
-    newProfile(profileData).then(data => {
+    const formData = { ...profileData, experiences: experienceData };
+    newProfile(formData).then(data => {
       setProfileCreated(data);
       console.log(data);
     });
@@ -59,6 +75,10 @@ const ApplicantProfile = () => {
         options={options}
         value={profileData.employment_status}
         onChange={handleChange}
+      />
+      <Experience
+        experienceData={experienceData}
+        handleExperience={handleExperienceChange}
       />
       <Form.Button primary onClick={createProfile} type="submit">
         Create Profile
