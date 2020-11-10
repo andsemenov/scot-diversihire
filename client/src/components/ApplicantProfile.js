@@ -25,22 +25,23 @@ const ApplicantProfile = () => {
   ];
 
   const createProfile = () => {
-    newProfile(profileData).then(isSuccessful => {
+    const token = localStorage.getItem("token");
+    newProfile(profileData, token).then(isSuccessful => {
       setProfileCreated(isSuccessful);
     });
   };
 
   return (
-    <Form>
+    <Form onSubmit={createProfile}>
       <Form.Field>
-        <label>Job title</label>
+        <label htmlFor="job_title">Job title</label>
         <input
-          onChange={handleChange}
+          id="job_title"
           name="job_title"
           placeholder="Job title"
+          onChange={handleChange}
         />
       </Form.Field>
-
       <Form.TextArea
         name="bio"
         label="Bio"
@@ -48,18 +49,23 @@ const ApplicantProfile = () => {
         onChange={handleChange}
       />
       <Form.Field>
-        <label>Location</label>
-        <input onChange={handleChange} name="location" placeholder="Location" />
+        <label htmlFor="location">Location</label>
+        <input
+          id="location"
+          name="location"
+          placeholder="Location"
+          onChange={handleChange}
+        />
       </Form.Field>
       <Form.Select
-        label="Type of employment"
+        label="Status of employment"
         name="employment_status"
         placeholder="Status of employment"
         options={options}
         value={profileData.employment_status}
         onChange={handleChange}
       />
-      <Form.Button primary onClick={createProfile} type="submit">
+      <Form.Button primary type="submit">
         Create Profile
       </Form.Button>
       {profileCreated && <Redirect to="/profile_creation_successful" />}
