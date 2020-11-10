@@ -1,5 +1,5 @@
 const express = require("express");
-const { createProfile } = require("../services/database/profile");
+const { createProfile, getAllProfile } = require("../services/database/profile");
 const {
   createWorkExperience
 } = require("../services/database/work_experience");
@@ -24,6 +24,17 @@ router.post("/", passport.authenticate("jwt", { session: false }), async(req, re
     console.log("error", error);
     res.status(500).send("Error profile creation is unsuccessful");
   }
+});
+
+router.get("/", (req, res) => {
+	getAllProfile()
+		.then((data) => {
+			res.send(data);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.send(500);
+		});
 });
 
 module.exports = router;
