@@ -1,5 +1,5 @@
 const express = require("express");
-const { createProfile, getAllProfile } = require("../services/database/profile");
+const { createProfile, getAllProfiles } = require("../services/database/profile");
 const {
   createWorkExperience
 } = require("../services/database/work_experience");
@@ -27,7 +27,7 @@ router.post("/", passport.authenticate("jwt", { session: false }), async(req, re
 });
 
 router.get("/", (req, res) => {
-	getAllProfile()
+	getAllProfiles()
 		.then((data) => {
 			res.send(data);
 		})

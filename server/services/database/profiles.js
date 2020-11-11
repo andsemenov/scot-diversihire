@@ -18,11 +18,11 @@ const createProfile = (profile) => {
 		.then((result) => result.rows);
 };
 
-const getAllProfile = () => {
+const getAllProfiles = () => {
 	return pool.query("SELECT * FROM profile").then((result) => result.rows);
 };
 
 module.exports = {
 	createProfile,
-	getAllProfile,
+	getAllProfiles,
 };
