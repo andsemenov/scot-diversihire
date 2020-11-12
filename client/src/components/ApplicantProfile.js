@@ -29,9 +29,18 @@ const ApplicantProfile = () => {
     setProfileData({ ...profileData, [name]: value });
   };
 
-  const handleExperienceChange = (event, index) => {
-    const { name, value } = event.target;
-    setExperienceData([{ ...experienceData[index], [name]: value }]);
+  const handleExperience = ({ event, targetData, experienceIndex }) => {
+    if (targetData) {
+      const { name, value } = targetData;
+      setExperienceData([
+        { ...experienceData[experienceIndex], [name]: value }
+      ]);
+    } else {
+      const { name, value } = event.target;
+      setExperienceData([
+        { ...experienceData[experienceIndex], [name]: value }
+      ]);
+    }
   };
   const options = [
     { key: "1", text: "Looking for full time", value: "full_time" },
@@ -78,7 +87,7 @@ const ApplicantProfile = () => {
       />
       <Experience
         experienceData={experienceData}
-        handleExperience={handleExperienceChange}
+        handleExperience={handleExperience}
       />
       <Form.Button primary onClick={createProfile} type="submit">
         Create Profile

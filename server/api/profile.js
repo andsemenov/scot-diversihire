@@ -10,10 +10,11 @@ router.post("/", async(req, res) => {
   try {
     const db_newProfile = req.body;
     const { experiences } = req.body;
+    const response = await createProfile(db_newProfile);
     await experiences.forEach((experience) => {
-      createWorkExperience(experience);
+      createWorkExperience({ ...experience, profile_id: response[0].id});
     });
-    await createProfile(db_newProfile);
+    
     res.status(201).send("Profile created");
   } catch (error) {
     res.status(500).send("Error profile creation is unsuccessful");

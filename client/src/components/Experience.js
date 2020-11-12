@@ -11,8 +11,8 @@ const Experience = ({ handleExperience, experienceData }) => {
       <Form.Field>
         <label>Company</label>
         <input
-          onChange={e => {
-            handleExperience(e, experienceIndex);
+          onChange={event => {
+            handleExperience({ event, experienceIndex });
           }}
           name="company"
           placeholder="I worked at..."
@@ -23,8 +23,8 @@ const Experience = ({ handleExperience, experienceData }) => {
       <Form.Field>
         <label>Job Title</label>
         <input
-          onChange={e => {
-            handleExperience(e, experienceIndex);
+          onChange={event => {
+            handleExperience({ event, experienceIndex });
           }}
           name="job_title"
           placeholder="When I worked at.... I did.."
@@ -36,8 +36,8 @@ const Experience = ({ handleExperience, experienceData }) => {
         name="description"
         label="Job Description"
         placeholder="My duties involve.."
-        onChange={e => {
-          handleExperience(e, experienceIndex);
+        onChange={event => {
+          handleExperience({ event, experienceIndex });
         }}
         value={experienceData[experienceIndex].description}
       />
@@ -45,8 +45,8 @@ const Experience = ({ handleExperience, experienceData }) => {
         name="start_date"
         label="Start Date"
         placeholder="I started working for this company from.."
-        onChange={e => {
-          handleExperience(e, experienceIndex);
+        onChange={(event, targetData) => {
+          handleExperience({ event, targetData, experienceIndex });
         }}
         iconPosition="left"
         value={experienceData[experienceIndex].start_date}
@@ -55,8 +55,8 @@ const Experience = ({ handleExperience, experienceData }) => {
         name="end_date"
         label="End Date"
         placeholder="I left this company on..."
-        onChange={e => {
-          handleExperience(e, experienceIndex);
+        onChange={(event, targetData) => {
+          handleExperience({ event, targetData, experienceIndex });
         }}
         iconPosition="left"
         value={experienceData[experienceIndex].end_date}
