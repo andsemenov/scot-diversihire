@@ -7,6 +7,8 @@ const createProfile = (profile) => {
     .query(
       "INSERT INTO profile (job_title, bio, location, employment_status) values ($1, $2, $3, $4) returning *",
       [
+        profile.profile_public_id,
+        profile.applicant_id,
         profile.job_title,
         profile.bio,
         profile.location,
