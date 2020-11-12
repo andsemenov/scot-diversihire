@@ -1,5 +1,5 @@
 -- Drop tables in case they already exist
-
+DROP TABLE if exists employment_status_type;
 DROP TABLE if exists work_experience;
 DROP TABLE if exists education;
 DROP TABLE if exists profile;
