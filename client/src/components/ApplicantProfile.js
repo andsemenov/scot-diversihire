@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 import { newProfile } from "../api/profiles";
+import Experience from "./Experience";
 
 const ApplicantProfile = () => {
   const [profileData, setProfileData] = useState({
@@ -11,6 +12,16 @@ const ApplicantProfile = () => {
     employment_status: ""
   });
 
+  const [experienceData, setExperienceData] = useState([
+    {
+      company: "",
+      job_title: "",
+      description: "",
+      start_date: "",
+      end_date: ""
+    }
+  ]);
+
   const [profileCreated, setProfileCreated] = useState(null);
 
   const handleChange = (event, result) => {
@@ -18,6 +29,19 @@ const ApplicantProfile = () => {
     setProfileData({ ...profileData, [name]: value });
   };
 
+  const handleExperience = ({ event, targetData, experienceIndex }) => {
+    if (targetData) {
+      const { name, value } = targetData;
+      setExperienceData([
+        { ...experienceData[experienceIndex], [name]: value }
+      ]);
+    } else {
+      const { name, value } = event.target;
+      setExperienceData([
+        { ...experienceData[experienceIndex], [name]: value }
+      ]);
+    }
+  };
   const options = [
     { key: "1", text: "Looking for full time", value: "full_time" },
     { key: "2", text: "Looking for part time", value: "part_time" },
@@ -25,8 +49,9 @@ const ApplicantProfile = () => {
   ];
 
   const createProfile = () => {
+    const formData = { ...profileData, experiences: experienceData };
     const token = localStorage.getItem("token");
-    newProfile(profileData, token).then(isSuccessful => {
+    newProfile(formData, token).then(isSuccessful => {
       setProfileCreated(isSuccessful);
     });
   };
@@ -65,7 +90,11 @@ const ApplicantProfile = () => {
         value={profileData.employment_status}
         onChange={handleChange}
       />
-      <Form.Button primary type="submit">
+      <Experience
+        experienceData={experienceData}
+        handleExperience={handleExperience}
+      />
+      <Form.Button primary onClick={createProfile} type="submit">
         Create Profile
       </Form.Button>
       {profileCreated && <Redirect to="/profile_creation_successful" />}

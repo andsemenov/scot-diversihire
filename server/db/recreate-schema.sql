@@ -3,6 +3,7 @@
 DROP TABLE if exists work_experience;
 DROP TABLE if exists education;
 DROP TABLE if exists profile;
+DROP TYPE if exists employment_status_type;
 DROP TABLE if exists users;
 
 
