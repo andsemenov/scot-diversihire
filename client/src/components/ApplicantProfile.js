@@ -16,7 +16,7 @@ const ApplicantProfile = () => {
     {
       company: "",
       job_title: "",
-      job_description: "",
+      description: "",
       start_date: "",
       end_date: ""
     }

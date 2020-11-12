@@ -33,13 +33,13 @@ const Experience = ({ handleExperience, experienceData }) => {
       </Form.Field>
 
       <Form.TextArea
-        name="job_description"
+        name="description"
         label="Job Description"
         placeholder="My duties involve.."
         onChange={e => {
           handleExperience(e, experienceIndex);
         }}
-        value={experienceData[experienceIndex].job_description}
+        value={experienceData[experienceIndex].description}
       />
       <DateInput
         name="start_date"
