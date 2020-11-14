@@ -14,12 +14,12 @@ const ApplicantLogin = () => {
     {
       id: "applicant",
       key: "applicant",
-      label: "I'm An Applicant"
+      label: "I'm an applicant"
     },
     {
       id: "recruiter",
       key: "recruiter",
-      label: "I'm A Recruiter"
+      label: "I'm a recruiter"
     }
   ];
 
@@ -33,7 +33,7 @@ const ApplicantLogin = () => {
   };
 
   const loginSubmit = () => {
-    signApi(email, password)
+    signApi(email, password, role)
       .then(data => {
         const token = data.token;
         localStorage.setItem("token", token);
