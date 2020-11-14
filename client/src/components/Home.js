@@ -9,7 +9,7 @@ const Home = () => {
       <header className="home-header">
         <h1>Diversi-Hire</h1>
       </header>
-      <Button primary as={Link} to="/applicant_login">
+      <Button primary as={Link} to="/login">
         Login
       </Button>
     </div>
