@@ -3,10 +3,10 @@ const router = express.Router();
 
 const users = require("./users");
 const status = require("./status");
-const profile = require("./profile");
+const profiles = require("./profiles");
 
 router.use("/users", users);
 router.use("/status", status);
-router.use("/profile", profile);
+router.use("/profiles", profiles);
 
 module.exports = router;
