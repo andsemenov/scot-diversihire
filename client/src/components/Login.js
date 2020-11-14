@@ -7,7 +7,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const [successRoute, setSuccessRoute] = useState(false);
+  const [redirectRoute, setRedirectRoute] = useState("");
 
   const handleChange = event => {
     if (event.target.name === "email") {
@@ -24,15 +24,15 @@ const Login = () => {
         const token = data.token;
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(data.user));
-        if (data.user.role === "applicant") {
-          setSuccessRoute("/applicant_create_profile");
-        } else {
-          setSuccessRoute("/public_applicant_profiles");
+        if (data.user && data.user.role === "applicant") {
+          setRedirectRoute("/applicant_create_profile");
+        } else if (data.user && data.user.role === "recruiter") {
+          setRedirectRoute("/public_applicant_profiles");
         }
       })
       .catch(() => {
         setError(true);
-        setSuccessRoute(false);
+        setRedirectRoute(false);
       });
   };
 
@@ -60,7 +60,7 @@ const Login = () => {
         Login
       </Button>
       {error ? <div>Incorrect email or password</div> : null}
-      {successRoute && <Redirect to={successRoute} />}
+      {redirectRoute && <Redirect to={redirectRoute} />}
     </Form>
   );
 };
