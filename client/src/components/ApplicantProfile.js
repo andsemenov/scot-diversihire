@@ -9,7 +9,7 @@ const ApplicantProfile = () => {
     job_title: "",
     bio: "",
     location: "",
-    employment_status: ""
+    employment_status: "full_time"
   });
 
   const [experienceData, setExperienceData] = useState([
