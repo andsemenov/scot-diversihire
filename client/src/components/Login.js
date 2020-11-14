@@ -3,25 +3,11 @@ import { Button, Form } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 import { signApi } from "../api/auth";
 
-const ApplicantLogin = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
-  const [checkedItem, setCheckedItem] = useState("applicant");
-
-  const roleCheckboxes = [
-    {
-      id: "applicant",
-      key: "applicant",
-      label: "I'm an applicant"
-    },
-    {
-      id: "recruiter",
-      key: "recruiter",
-      label: "I'm a recruiter"
-    }
-  ];
+  const [successRoute, setSuccessRoute] = useState(false);
 
   const handleChange = event => {
     if (event.target.name === "email") {
@@ -33,26 +19,21 @@ const ApplicantLogin = () => {
   };
 
   const loginSubmit = () => {
-    signApi(email, password, role)
+    signApi(email, password)
       .then(data => {
         const token = data.token;
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(data.user));
-        setSuccess(true);
+        if (data.user.role === "applicant") {
+          setSuccessRoute("/applicant_create_profile");
+        } else {
+          setSuccessRoute("/public_applicant_profiles");
+        }
       })
       .catch(() => {
         setError(true);
-        setSuccess(false);
+        setSuccessRoute(false);
       });
-  };
-
-  const handleRoleChange = event => {
-    const id = event.target.id;
-    if (checkedItem === id) {
-      setCheckedItem(undefined);
-    } else {
-      setCheckedItem(id);
-    }
   };
 
   return (
@@ -75,26 +56,13 @@ const ApplicantLogin = () => {
           placeholder="Password"
         />
       </Form.Field>
-      <Form.Group inline required>
-        {roleCheckboxes.map(item => (
-          <Form.Checkbox
-            key={item.key}
-            id={item.id}
-            label={item.label}
-            checked={item.id === checkedItem}
-            onChange={handleRoleChange}
-          />
-        ))}
-      </Form.Group>
       <Button primary onClick={loginSubmit} type="submit">
         Login
       </Button>
-      {error && <p>Incorrect email or password</p>}
-      {success && checkedItem === "applicant" && (
-        <Redirect to="/applicant_create_profile" />
-      )}
+      {error ? <div>Incorrect email or password</div> : null}
+      {successRoute && <Redirect to={successRoute} />}
     </Form>
   );
 };
 
-export default ApplicantLogin;
+export default Login;

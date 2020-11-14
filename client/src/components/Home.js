@@ -10,7 +10,7 @@ const Home = () => {
         <h1>Diversi-Hire</h1>
       </header>
       <Button primary as={Link} to="/applicant_login">
-        Log in as Applicant
+        Login
       </Button>
     </div>
   );
