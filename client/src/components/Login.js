@@ -32,7 +32,7 @@ const Login = () => {
       })
       .catch(() => {
         setError(true);
-        setRedirectRoute(false);
+        setRedirectRoute("");
       });
   };
 
