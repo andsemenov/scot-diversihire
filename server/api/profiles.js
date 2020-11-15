@@ -21,13 +21,11 @@ router.post(
       db_newProfile.profile_public_id = nanoid();
       const { experiences } = req.body;
       const newProfile = await createProfile(db_newProfile);
-      experiences.forEach(async (experience) => {
-        await createWorkExperience({
-          ...experience,
-          profile_id: newProfile.id,
-        });
-      });
-
+      await Promise.all(
+        experiences.map((experience) =>
+          createWorkExperience({ ...experience, profile_id: newProfile.id })
+        )
+      );
       res.status(201).send("Profile created");
     } catch (error) {
       console.log("error", error);
