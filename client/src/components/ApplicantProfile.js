@@ -23,23 +23,38 @@ const ApplicantProfile = () => {
   ]);
 
   const [profileCreated, setProfileCreated] = useState(null);
+  const addMoreExperience = () => {
+    setExperienceData([
+      ...experienceData,
+      {
+        company: "",
+        job_title: "",
+        description: "",
+        start_date: "",
+        end_date: ""
+      }
+    ]);
+  };
 
   const handleChange = (event, result) => {
     const { name, value } = result || event.target;
     setProfileData({ ...profileData, [name]: value });
   };
-
-  const handleExperience = ({ event, targetData, experienceIndex }) => {
+  const updateExperienceData = (value, name, index) =>
+    experienceData.map((experience, experienceIndex) => {
+      if (index === experienceIndex) {
+        return { ...experience, [name]: value };
+      }
+      return experience;
+    });
+  const handleExperience = ({ event, targetData, index }) => {
     if (targetData) {
       const { name, value } = targetData;
-      setExperienceData([
-        { ...experienceData[experienceIndex], [name]: value }
-      ]);
+
+      setExperienceData(updateExperienceData(value, name, index));
     } else {
       const { name, value } = event.target;
-      setExperienceData([
-        { ...experienceData[experienceIndex], [name]: value }
-      ]);
+      setExperienceData(updateExperienceData(value, name, index));
     }
   };
   const options = [
@@ -93,6 +108,7 @@ const ApplicantProfile = () => {
       <Experience
         experienceData={experienceData}
         handleExperience={handleExperience}
+        addMoreExperience={addMoreExperience}
       />
       <Form.Button primary onClick={createProfile} type="submit">
         Create Profile
