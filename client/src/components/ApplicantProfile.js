@@ -23,6 +23,8 @@ const ApplicantProfile = () => {
   ]);
 
   const [profileCreated, setProfileCreated] = useState(null);
+
+  // function creates a new form with the conntent described below
   const addMoreExperience = () => {
     setExperienceData([
       ...experienceData,
@@ -40,13 +42,16 @@ const ApplicantProfile = () => {
     const { name, value } = result || event.target;
     setProfileData({ ...profileData, [name]: value });
   };
+
+  // function merges new data with the old data
   const updateExperienceData = (value, name, index) =>
     experienceData.map((experience, experienceIndex) => {
       if (index === experienceIndex) {
         return { ...experience, [name]: value };
       }
       return experience;
-    });
+    }); // function merges new data with old data
+
   const handleExperience = ({ event, targetData, index }) => {
     if (targetData) {
       const { name, value } = targetData;
@@ -108,8 +113,12 @@ const ApplicantProfile = () => {
       <Experience
         experienceData={experienceData}
         handleExperience={handleExperience}
-        addMoreExperience={addMoreExperience}
+        addMoreExperience={
+          addMoreExperience
+        } /* using function addMoreExperience as a props in Experience Component */
       />
+
+      {/* Button adds all form data to the database */}
       <Form.Button primary onClick={createProfile} type="submit">
         Create Profile
       </Form.Button>
