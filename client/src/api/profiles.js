@@ -7,7 +7,7 @@ export const newProfile = (profileData, token) => {
       Authorization: "Bearer " + token
     }
   };
-  return fetch("/api/profile", postProfile).then(res => res.ok);
+  return fetch("/api/profiles", postProfile).then(res => res.ok);
 };
 
 export const getProfile = public_profile_id => {
