@@ -9,8 +9,8 @@ const Home = () => {
       <header className="home-header">
         <h1>Diversi-Hire</h1>
       </header>
-      <Button primary as={Link} to="/applicant_login">
-        Log in as Applicant
+      <Button primary as={Link} to="/login">
+        Login
       </Button>
     </div>
   );

@@ -116,10 +116,10 @@ const ApplicantProfile = () => {
         addExperience={
           addExperience
         } /* using function addExperience as a props in Experience Component */
-      />
+      /> 
 
       {/* Button adds all form data to the database */}
-      <Form.Button primary onClick={createProfile} type="submit">
+      <Form.Button primary onClick={createProfile} type="submit">   
         Create Profile
       </Form.Button>
       {profileCreated && <Redirect to="/profile_creation_successful" />}
