@@ -7,6 +7,7 @@ import MenuHeader from "./components/MenuHeader";
 import Login from "./components/Login";
 import ApplicantProfile from "./components/ApplicantProfile";
 import SuccessMessage from "./components/SuccessMessage";
+import ApplicantPublicProfile from "./components/ApplicantPublicProfile";
 
 const Routes = () => {
   return (
@@ -18,6 +19,10 @@ const Routes = () => {
       <Route path="/login" component={Login} />
       <Route path="/applicant_create_profile" component={ApplicantProfile} />
       <Route path="/profile_creation_successful" component={SuccessMessage} />
+      <Route
+        path="/public_applicant_profiles/" /* {public_id} */
+        component={ApplicantPublicProfile}
+      />
     </Router>
   );
 };
