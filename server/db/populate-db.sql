@@ -5,10 +5,10 @@ INSERT INTO users (email, role, password) values ('user@cyf.org', 'applicant', '
 INSERT INTO users (email, role, password) values ('user2@cyf.org', 'applicant', 'user_password'); 
 INSERT INTO users (email, role, password) values ('user3@cyf.org', 'applicant', 'user_password'); 
 
-INSERT INTO profile (profile_public_id, applicant_id, location, bio, job_title) values ( '', 1, 'Glasgow', 'Lorem ipsum dolor sit amet.', 'Content Strategist'); 
-INSERT INTO profile (profile_public_id, applicant_id, location, bio, job_title) values ( '', 2, 'London', 'Fusce fermentum mi quis eros ullamcorper interdum.', 'Aspiring Writer'); 
-INSERT INTO profile (profile_public_id, applicant_id, location, bio, job_title) values ( '', 3, 'Edinburgh', 'Ut tincidunt enim elementum fringilla volutpat.', 'Software Engineer');
-INSERT INTO profile (profile_public_id, applicant_id, location, bio, job_title) values ( '', 4, 'Bristol', 'Nulla at justo ut quam mattis eleifend nec eu elit.', 'Javascript Developer');  
+INSERT INTO profile (profile_public_id, applicant_id, location, bio, job_title) values ( '1Xtq-304SMKRwLJQWw-mR', 1, 'Glasgow', 'Lorem ipsum dolor sit amet.', 'Content Strategist'); 
+INSERT INTO profile (profile_public_id, applicant_id, location, bio, job_title) values ( 'hKUE5--pXEA7FGoz7jr1t', 2, 'London', 'Fusce fermentum mi quis eros ullamcorper interdum.', 'Aspiring Writer'); 
+INSERT INTO profile (profile_public_id, applicant_id, location, bio, job_title) values ( 'Fb7FGDnGIO9ZrygF5ENfe', 3, 'Edinburgh', 'Ut tincidunt enim elementum fringilla volutpat.', 'Software Engineer');
+INSERT INTO profile (profile_public_id, applicant_id, location, bio, job_title) values ( 'yaDe3RDQ49LidXiu6WfR6', 4, 'Bristol', 'Nulla at justo ut quam mattis eleifend nec eu elit.', 'Javascript Developer');  
 
 INSERT INTO education (profile_id, institution, qualification, course_title, start_date, end_date) values (2, 'University of A', 'degree', 'Liberal Arts', '2012-01-08', '2015-08-30'); 
 INSERT INTO education (profile_id, institution, qualification, course_title, start_date, end_date) values (3, 'University of B', 'degree', 'Investment Banking', '2011-08-08', '2014-08-30'); 
