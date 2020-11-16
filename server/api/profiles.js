@@ -2,6 +2,8 @@ const express = require("express");
 const {
 	createProfile,
 	getAllProfiles,
+	getAllEducation,
+	getAllWorkExperiences,
 } = require("../services/database/profile");
 const {
 	createWorkExperience,
@@ -44,11 +46,41 @@ router.get("/", (req, res) => {
 		});
 });
 
+router.get("/edu", (req, res) => {
+	getAllEducation()
+		.then(data => {
+			res.send(data);
+		})
+		.catch(err => {
+			console.error(err);
+			res.send(500);
+		});
+});
+
 router.get("/:id", (req, res) => {
 	const id = req.params.id;
 	getAllProfiles().then(profiles => {
-		const profile = profiles.filter(p => p.applicant_id == id);
-		res.send(profile);
+		const userProfiles = profiles.filter(p => p.applicant_id == id);
+		const profileIds = userProfiles.map(profile => profile.id);
+
+		getAllEducation().then(educations => {
+			const userEdu = educations.filter(edu =>
+				profileIds.includes(edu.profile_id)
+			);
+			getAllWorkExperiences().then(experiences => {
+				const userExp = experiences.filter(exp =>
+					profileIds.includes(exp.profile_id)
+				);
+				const result = userProfiles.map(profile => {
+					return {
+						...profile,
+						education: userEdu,
+						work_experience: userExp,
+					};
+				});
+				res.send(result);
+			});
+		});
 	});
 });
 

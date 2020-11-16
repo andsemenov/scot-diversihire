@@ -22,7 +22,19 @@ const getAllProfiles = () => {
 	return pool.query("SELECT * FROM profile").then((result) => result.rows);
 };
 
+const getAllEducation = () => {
+	return pool.query("SELECT * FROM education").then((result) => result.rows);
+};
+
+const getAllWorkExperiences = () => {
+	return pool
+		.query("SELECT * FROM work_experience")
+		.then((result) => result.rows);
+};
+
 module.exports = {
 	createProfile,
 	getAllProfiles,
+	getAllEducation,
+	getAllWorkExperiences,
 };
