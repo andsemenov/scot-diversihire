@@ -20,13 +20,13 @@ const ApplicantProfile = () => {
     employment_status: "full_time"
   });
 
-  const [experienceData, setExperienceData] = useState([defaultExperience]);
+  const [experiences, setExperienceData] = useState([defaultExperience]);
 
   const [profileCreated, setProfileCreated] = useState(null);
 
   // function creates a new form with the content described below
   const addExperience = () => {
-    setExperienceData([...experienceData, defaultExperience]);
+    setExperienceData([...experiences, defaultExperience]);
   };
 
   const handleChange = (event, result) => {
@@ -35,22 +35,31 @@ const ApplicantProfile = () => {
   };
 
   // function merges new data with the old data
-  const updateExperienceData = (value, name, index) =>
-    experienceData.map((experience, experienceIndex) => {
-      if (index === experienceIndex) {
-        return { ...experience, [name]: value };
-      }
-      return experience;
-    }); // function merges new data with old data
+  const updateExperiences = (value, name, index) =>
+    // experiences.map((experience, experienceIndex) => {
+    //   if (index === experienceIndex) {
+    // return { ...experience, [name]: value }; /*This return line helps to pick date from the calender*/
+    {
+      const updatedExperienceData = [...experiences];
+      updatedExperienceData[index] = {
+        ...updatedExperienceData[index],
+        [name]: value
+      };
+      return updatedExperienceData;
+    };
+
+  // }
+  // return experience;
+  // })// function merges new data with old data
 
   const handleExperience = ({ event, targetData, index }) => {
     if (targetData) {
       const { name, value } = targetData;
 
-      setExperienceData(updateExperienceData(value, name, index));
+      setExperienceData(updateExperiences(value, name, index));
     } else {
       const { name, value } = event.target;
-      setExperienceData(updateExperienceData(value, name, index));
+      setExperienceData(updateExperiences(value, name, index));
     }
   };
   const options = [
@@ -60,7 +69,7 @@ const ApplicantProfile = () => {
   ];
 
   const createProfile = () => {
-    const formData = { ...profileData, experiences: experienceData };
+    const formData = { ...profileData, experiences: experiences };
     const token = localStorage.getItem("token");
     newProfile(formData, token).then(isSuccessful => {
       setProfileCreated(isSuccessful);
@@ -102,7 +111,7 @@ const ApplicantProfile = () => {
         onChange={handleChange}
       />
       <Experience
-        experienceData={experienceData}
+        experiences={experiences}
         handleExperience={handleExperience}
         addExperience={
           addExperience

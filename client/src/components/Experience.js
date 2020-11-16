@@ -3,11 +3,11 @@ import { Form } from "semantic-ui-react";
 import { DateInput } from "semantic-ui-calendar-react";
 
 // function opens form for old data and adds a new form for new data as required
-const Experience = ({ handleExperience, experienceData, addExperience }) => {
+const Experience = ({ handleExperience, experiences, addExperience }) => {
   return (
     <Form.Group>
       <h3>Work Experience</h3>
-      {experienceData.map((experience, index) => {
+      {experiences.map((experience, index) => {
         return (
           <div key={index} style={{ paddingBottom: "15px" }}>
             <Form.Field>
