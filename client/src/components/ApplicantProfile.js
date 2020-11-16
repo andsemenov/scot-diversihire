@@ -5,6 +5,14 @@ import { newProfile } from "../api/profiles";
 import Experience from "./Experience";
 
 const ApplicantProfile = () => {
+  const defaultExperience = {
+    company: "",
+    job_title: "",
+    description: "",
+    start_date: "",
+    end_date: ""
+  };
+
   const [profileData, setProfileData] = useState({
     job_title: "",
     bio: "",
@@ -12,30 +20,13 @@ const ApplicantProfile = () => {
     employment_status: "full_time"
   });
 
-  const [experienceData, setExperienceData] = useState([
-    {
-      company: "",
-      job_title: "",
-      description: "",
-      start_date: "",
-      end_date: ""
-    }
-  ]);
+  const [experienceData, setExperienceData] = useState([defaultExperience]);
 
   const [profileCreated, setProfileCreated] = useState(null);
 
-  // function creates a new form with the conntent described below
-  const addMoreExperience = () => {
-    setExperienceData([
-      ...experienceData,
-      {
-        company: "",
-        job_title: "",
-        description: "",
-        start_date: "",
-        end_date: ""
-      }
-    ]);
+  // function creates a new form with the content described below
+  const addExperience = () => {
+    setExperienceData([...experienceData, defaultExperience]);
   };
 
   const handleChange = (event, result) => {
@@ -77,7 +68,7 @@ const ApplicantProfile = () => {
   };
 
   return (
-    <Form onSubmit={createProfile}>
+    <Form.Group onSubmit={createProfile}>
       <Form.Field>
         <label htmlFor="job_title">Job title</label>
         <input
@@ -113,9 +104,9 @@ const ApplicantProfile = () => {
       <Experience
         experienceData={experienceData}
         handleExperience={handleExperience}
-        addMoreExperience={
-          addMoreExperience
-        } /* using function addMoreExperience as a props in Experience Component */
+        addExperience={
+          addExperience
+        } /* using function addExperience as a props in Experience Component */
       />
 
       {/* Button adds all form data to the database */}
@@ -126,7 +117,7 @@ const ApplicantProfile = () => {
       {profileCreated === false && (
         <div>Error! You have NOT created a profile</div>
       )}
-    </Form>
+    </Form.Group>
   );
 };
 
