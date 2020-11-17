@@ -15,9 +15,14 @@ const createProfile = (profile) => {
         profile.employment_status,
       ]
     )
-    .then((result) => result.rows);
+    .then((result) => result.rows[0]);
+};
+
+const getAllProfiles = () => {
+  return pool.query("SELECT * FROM profile").then((result) => result.rows);
 };
 
 module.exports = {
   createProfile,
+  getAllProfiles,
 };

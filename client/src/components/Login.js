@@ -3,11 +3,11 @@ import { Button, Form } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 import { signApi } from "../api/auth";
 
-const ApplicantLogin = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
+  const [redirectRoute, setRedirectRoute] = useState("");
 
   const handleChange = event => {
     if (event.target.name === "email") {
@@ -24,11 +24,15 @@ const ApplicantLogin = () => {
         const token = data.token;
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(data.user));
-        setSuccess(true);
+        if (data.user && data.user.role === "applicant") {
+          setRedirectRoute("/applicant_create_profile");
+        } else if (data.user && data.user.role === "recruiter") {
+          setRedirectRoute("/public_applicant_profiles");
+        }
       })
       .catch(() => {
         setError(true);
-        setSuccess(false);
+        setRedirectRoute("");
       });
   };
 
@@ -56,9 +60,9 @@ const ApplicantLogin = () => {
         Login
       </Button>
       {error ? <div>Incorrect email or password</div> : null}
-      {success ? <Redirect to="/applicant_create_profile" /> : null}
+      {redirectRoute && <Redirect to={redirectRoute} />}
     </Form>
   );
 };
 
-export default ApplicantLogin;
+export default Login;

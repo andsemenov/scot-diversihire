@@ -4,6 +4,7 @@ INSERT INTO users (email, role, password) values ('admin@cyf.org', 'applicant', 
 INSERT INTO users (email, role, password) values ('user@cyf.org', 'applicant', 'user_password');
 INSERT INTO users (email, role, password) values ('user2@cyf.org', 'applicant', 'user_password'); 
 INSERT INTO users (email, role, password) values ('user3@cyf.org', 'applicant', 'user_password'); 
+INSERT INTO users (email, role, password) values ('recruiter@cyf.org', 'recruiter', 'recruiter_password');
 
 INSERT INTO profile (profile_public_id, applicant_id, location, bio, job_title) values ( '1Xtq-304SMKRwLJQWw-mR', 1, 'Glasgow', 'Lorem ipsum dolor sit amet.', 'Content Strategist'); 
 INSERT INTO profile (profile_public_id, applicant_id, location, bio, job_title) values ( 'hKUE5--pXEA7FGoz7jr1t', 2, 'London', 'Fusce fermentum mi quis eros ullamcorper interdum.', 'Aspiring Writer'); 
