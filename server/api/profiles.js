@@ -2,12 +2,12 @@ const express = require("express");
 const {
 	createProfile,
 	getAllProfiles,
-	getProfileById,
-	getEducationById,
-	getWorkExperiencesById,
+	getProfileByPublicId,
 } = require("../services/database/profile");
 const {
 	createWorkExperience,
+	getWorkExperiencesByProfileId,
+	getEducationByProfileId,
 } = require("../services/database/work_experience");
 const router = express.Router();
 const { nanoid } = require("nanoid");
@@ -49,36 +49,38 @@ router.get("/", (req, res) => {
 
 router.get("/:public_id", (req, res) => {
 	const id = req.params.public_id;
-	getProfileById(id)
+	getProfileByPublicId(id)
 		.then(profile => {
-			const profileId = profile[0].id;
+			if (profile == null) {
+				return res.sendStatus(404);
+			}
 
-			getEducationById(profileId)
+			const profileId = profile.id;
+
+			getEducationByProfileId(profileId)
 				.then(educations => {
-					getWorkExperiencesById(profileId)
+					getWorkExperiencesByProfileId(profileId)
 						.then(experiences => {
-							const result = profile.map(profile => {
-								return {
-									...profile,
-									education: educations,
-									work_experience: experiences,
-								};
-							});
-							res.send(result);
+							profile = {
+								...profile,
+								education: educations,
+								work_experience: experiences,
+							};
+							res.send(profile);
 						})
 						.catch(err => {
 							console.error(err);
-							res.send(500);
+							res.sendStatus(500);
 						});
 				})
 				.catch(err => {
 					console.error(err);
-					res.send(500);
+					res.sendStatus(500);
 				});
 		})
 		.catch(err => {
 			console.error(err);
-			res.send(500);
+			res.sendStatus(500);
 		});
 });
 
