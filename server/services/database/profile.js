@@ -22,19 +22,28 @@ const getAllProfiles = () => {
 	return pool.query("SELECT * FROM profile").then((result) => result.rows);
 };
 
-const getAllEducation = () => {
-	return pool.query("SELECT * FROM education").then((result) => result.rows);
+const getProfileById = (profileId) => {
+	return pool
+		.query("SELECT * FROM profile WHERE profile_public_id=$1", [profileId])
+		.then((result) => result.rows);
 };
 
-const getAllWorkExperiences = () => {
+const getEducationById = (profileId) => {
 	return pool
-		.query("SELECT * FROM work_experience")
+		.query("SELECT * FROM education WHERE profile_id=$1", [profileId])
+		.then((result) => result.rows);
+};
+
+const getWorkExperiencesById = (profileId) => {
+	return pool
+		.query("SELECT * FROM work_experience WHERE profile_id=$1", [profileId])
 		.then((result) => result.rows);
 };
 
 module.exports = {
 	createProfile,
 	getAllProfiles,
-	getAllEducation,
-	getAllWorkExperiences,
+	getProfileById,
+	getEducationById,
+	getWorkExperiencesById,
 };
