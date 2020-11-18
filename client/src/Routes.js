@@ -4,7 +4,7 @@ import Home from "./components/Home";
 import About from "./components/About";
 import Status from "./components/Status";
 import MenuHeader from "./components/MenuHeader";
-import ApplicantLogin from "./components/ApplicantLogin";
+import Login from "./components/Login";
 import ApplicantProfile from "./components/ApplicantProfile";
 import SuccessMessage from "./components/SuccessMessage";
 
@@ -15,7 +15,7 @@ const Routes = () => {
       <Route path="/" exact component={Home} />
       <Route path="/about/" component={About} />
       <Route path="/status/" component={Status} />
-      <Route path="/applicant_login" component={ApplicantLogin} />
+      <Route path="/login" component={Login} />
       <Route path="/applicant_create_profile" component={ApplicantProfile} />
       <Route path="/profile_creation_successful" component={SuccessMessage} />
     </Router>

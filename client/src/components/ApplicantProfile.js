@@ -94,7 +94,7 @@ const ApplicantProfile = () => {
         experienceData={experienceData}
         handleExperience={handleExperience}
       />
-      <Form.Button primary onClick={createProfile} type="submit">
+      <Form.Button primary type="submit">
         Create Profile
       </Form.Button>
       {profileCreated && <Redirect to="/profile_creation_successful" />}
