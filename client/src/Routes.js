@@ -7,6 +7,8 @@ import MenuHeader from "./components/MenuHeader";
 import Login from "./components/Login";
 import ApplicantProfile from "./components/ApplicantProfile";
 import SuccessMessage from "./components/SuccessMessage";
+import ViewApplicantProfile from "./components/ViewApplicantProfile";
+import ApplicantsList from "./components/ApplicantsList";
 
 const Routes = () => {
   return (
@@ -18,6 +20,16 @@ const Routes = () => {
       <Route path="/login" component={Login} />
       <Route path="/applicant_create_profile" component={ApplicantProfile} />
       <Route path="/profile_creation_successful" component={SuccessMessage} />
+      <Route
+        exact
+        path="/public_applicant_profiles"
+        component={ApplicantsList}
+      />
+      <Route
+        exact
+        path="/public_applicant_profiles/:id"
+        component={ViewApplicantProfile}
+      />
     </Router>
   );
 };
