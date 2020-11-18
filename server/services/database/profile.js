@@ -13,7 +13,7 @@ const createProfile = (profile) => {
         profile.bio,
         profile.location,
         profile.employment_status,
-      ]
+      ],
     )
     .then((result) => result.rows[0]);
 };
@@ -22,7 +22,14 @@ const getAllProfiles = () => {
   return pool.query("SELECT * FROM profile").then((result) => result.rows);
 };
 
+const getProfileByPublicId = (profileId) => {
+  return pool
+    .query("SELECT * FROM profile WHERE profile_public_id=$1", [profileId])
+    .then((result) => result.rows[0]);
+};
+
 module.exports = {
   createProfile,
   getAllProfiles,
+  getProfileByPublicId,
 };
