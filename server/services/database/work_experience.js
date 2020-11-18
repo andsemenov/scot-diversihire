@@ -24,7 +24,7 @@ const getWorkExperiencesByProfileId = (profileId) => {
     .then((result) => result.rows);
 };
 
-const getEducationByProfileId = (profileId) => {
+const getEducationsByProfileId = (profileId) => {
   return pool
     .query("SELECT * FROM education WHERE profile_id=$1", [profileId])
     .then((result) => result.rows);
@@ -33,5 +33,5 @@ const getEducationByProfileId = (profileId) => {
 module.exports = {
   createWorkExperience,
   getWorkExperiencesByProfileId,
-  getEducationByProfileId,
+  getEducationsByProfileId,
 };

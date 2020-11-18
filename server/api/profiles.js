@@ -7,7 +7,7 @@ const {
 const {
   createWorkExperience,
   getWorkExperiencesByProfileId,
-  getEducationByProfileId,
+  getEducationsByProfileId,
 } = require("../services/database/work_experience");
 const router = express.Router();
 const { nanoid } = require("nanoid");
@@ -48,41 +48,28 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/:public_id", (req, res) => {
+router.get("/:public_id", async (req, res) => {
   const id = req.params.public_id;
-  getProfileByPublicId(id)
-    .then(profile => {
-      if (profile == null) {
-        return res.sendStatus(404);
-      }
+  try {
+    let profile = await getProfileByPublicId(id);
 
-      const profileId = profile.id;
+    if (profile == null) {
+      return res.sendStatus(404);
+    }
 
-      getEducationByProfileId(profileId)
-        .then(educations => {
-          getWorkExperiencesByProfileId(profileId)
-            .then(experiences => {
-              profile = {
-                ...profile,
-                education: educations,
-                work_experience: experiences,
-              };
-              res.send(profile);
-            })
-            .catch(err => {
-              console.error(err);
-              res.sendStatus(500);
-            });
-        })
-        .catch(err => {
-          console.error(err);
-          res.sendStatus(500);
-        });
-    })
-    .catch(err => {
-      console.error(err);
-      res.sendStatus(500);
-    });
+    const profileId = profile.id;
+
+    profile = {
+      ...profile,
+      educations: await getEducationsByProfileId(profileId),
+      experiences: await getWorkExperiencesByProfileId(profileId),
+    };
+
+    res.send(profile);
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
 });
 
 module.exports = router;
