@@ -10,6 +10,6 @@ export const newProfile = (profileData, token) => {
   return fetch("/api/profiles", postProfile).then(res => res.ok);
 };
 
-export const getProfiles = () => {
+export const getAllProfiles = () => {
   return fetch("/api/profiles").then(res => res.json());
 };
