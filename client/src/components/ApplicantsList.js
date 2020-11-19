@@ -34,6 +34,7 @@ const ApplicantsList = () => {
         <div class="three wide column">
           <div>
             <Button
+              fluid
               class="ui primary button"
               primary
               as={Link}
@@ -41,7 +42,7 @@ const ApplicantsList = () => {
             >
               View Profile
             </Button>
-            <Button class="ui primary button" primary>
+            <Button fluid class="ui primary button" primary>
               Contact Applicant
             </Button>
           </div>
