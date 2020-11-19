@@ -22,12 +22,12 @@ const Routes = () => {
       <Route path="/profile_creation_successful" component={SuccessMessage} />
       <Route
         exact
-        path="/public_applicant_profiles"
+        path="/public-applicant-profiles"
         component={ApplicantsList}
       />
       <Route
         exact
-        path="/public_applicant_profiles/:id"
+        path="/public-applicant-profiles/:id"
         component={ViewApplicantProfile}
       />
     </Router>

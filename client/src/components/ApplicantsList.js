@@ -38,7 +38,7 @@ const ApplicantsList = () => {
               class="ui primary button"
               primary
               as={Link}
-              to={`/public_applicant_profiles/${profile.profile_public_id}`}
+              to={`/public-applicant-profiles/${profile.profile_public_id}`}
             >
               View Profile
             </Button>
