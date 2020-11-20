@@ -20,7 +20,7 @@ const Routes = () => {
       <Route path="/applicant_create_profile" component={ApplicantProfile} />
       <Route path="/profile_creation_successful" component={SuccessMessage} />
       <Route
-        path="/public_applicant_profiles/:public_id"
+        path="/public-applicant-profiles/:public_id"
         component={ApplicantPublicProfile}
       />
     </Router>

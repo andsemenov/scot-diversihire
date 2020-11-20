@@ -1,52 +1,66 @@
 import React, { useState, useEffect } from "react";
-import { Form } from "semantic-ui-react";
+import { Form, Grid, Segment, Label } from "semantic-ui-react";
 import { getProfile } from "../api/profiles";
-import moment from "moment";
 
 const ApplicantPublicProfile = ({ match }) => {
   const publicId = match.params.public_id;
 
   const [profile, setProfile] = useState(null);
   useEffect(() => {
-    getProfile(publicId).then(data => setProfile(data));
+    getProfile(publicId).then(setProfile);
   }, [publicId]);
 
   if (profile) {
     return (
       <Form>
-        <Form.TextArea name="bio" label="Bio" defaultValue={profile.bio} />
-        <Form.Field>
-          <label htmlFor="job_title">Job title</label>
-          <input id="job_title" defaultValue={profile.job_title} />
-        </Form.Field>
+        <Label>Job title</Label>
+        <Segment>{profile.job_title}</Segment>
 
-        <div>
-          <p>
-            <strong>Experience</strong>
-          </p>
-          {profile.experience.map((experience, key) => (
-            <div key={key + "divtop"}>
-              <div key={key + "div"} className="ui raised segment">
-                <p key={key + "title"}>{experience.job_title}</p>
-                <p key={key + "company"}>{experience.company}</p>
-                <p key={key + "description"}>{experience.description}</p>
-              </div>
-              <Form.Field>
-                <label key={key + "label"} htmlFor="years_experience">
-                  Years Experience
-                </label>
-                <input
-                  key={key + "input"}
-                  id="years_experience"
-                  defaultValue={numberYears(
-                    experience.start_date,
-                    experience.end_date
-                  )}
-                />
-              </Form.Field>
-            </div>
-          ))}
-        </div>
+        <Label>Bio</Label>
+        <Segment>{profile.bio}</Segment>
+
+        <Label centered>Work Experience</Label>
+
+        {profile.experiences.map((experience, key) => (
+          <Grid.Column
+            style={{
+              border: "dotted",
+              borderRadius: "10px"
+            }}
+          >
+            <Label>Position</Label>
+            <Segment>{experience.job_title}</Segment>
+            <Label>Company</Label>
+            <Segment>{experience.company}</Segment>
+            <Label>Description</Label>
+            <Segment>{experience.description}</Segment>
+            <Label>Employment Date</Label>
+            <Segment>{experience.start_date}</Segment>
+            <Segment>{experience.end_date}</Segment>
+          </Grid.Column>
+        ))}
+
+        <Label>Education</Label>
+
+        {profile.educations.map((education, key) => (
+          <Grid.Column
+            style={{
+              border: "dotted",
+              borderRadius: "10px"
+            }}
+          >
+            <Label>Institution</Label>
+            <Segment>{education.institution}</Segment>
+            <Label>Qualification</Label>
+            <Segment>{education.qualification}</Segment>
+            <Label>Course title</Label>
+            <Segment>{education.course_title}</Segment>
+            <Label>Education Date</Label>
+            <Segment>{education.start_date}</Segment>
+            <Segment>{education.end_date}</Segment>
+          </Grid.Column>
+        ))}
+
         <Form.Button primary>Contact Candidate</Form.Button>
       </Form>
     );
@@ -54,9 +68,3 @@ const ApplicantPublicProfile = ({ match }) => {
 };
 
 export default ApplicantPublicProfile;
-
-const numberYears = (start_date, end_date) => {
-  const start = moment(start_date);
-  const end = moment(end_date);
-  return end.diff(start, "years");
-};
