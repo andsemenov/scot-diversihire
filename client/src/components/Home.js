@@ -12,6 +12,12 @@ const Home = () => {
       <Button primary as={Link} to="/login">
         Login
       </Button>
+      <Button primary as={Link} to="/sign_up">
+        I'm an Applicant
+      </Button>
+      <Button primary as={Link} to="/sign_up">
+        I'm a Recruiter
+      </Button>
     </div>
   );
 };
