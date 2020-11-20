@@ -27,7 +27,7 @@ const Login = () => {
         if (data.user && data.user.role === "applicant") {
           setRedirectRoute("/applicant_create_profile");
         } else if (data.user && data.user.role === "recruiter") {
-          setRedirectRoute("/public_applicant_profiles");
+          setRedirectRoute("/public-applicant-profiles");
         }
       })
       .catch(() => {
