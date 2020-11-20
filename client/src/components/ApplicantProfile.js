@@ -97,7 +97,7 @@ const ApplicantProfile = () => {
       <Form.Button primary type="submit">
         Create Profile
       </Form.Button>
-      {profileCreated && <Redirect to="/profile_creation_successful" />}
+      {profileCreated && <Redirect to="/profile-creation-successful" />}
       {profileCreated === false && (
         <div>Error! You have NOT created a profile</div>
       )}
