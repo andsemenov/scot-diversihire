@@ -7,15 +7,20 @@ const ApplicantPublicProfile = ({ match }) => {
   const publicId = match.params.public_id;
 
   const [profile, setProfile] = useState(null);
+  const [loaded, setLoaded] = useState(false);
+
   useEffect(() => {
-    getProfile(publicId).then(setProfile);
+    getProfile(publicId).then(
+      profile => {
+        setProfile(profile);
+        setLoaded(true);
+      },
+      () => setLoaded(true)
+    );
   }, [publicId]);
 
-  if (profile) {
-    if (profile === {}) {
-      return <p>No profile exists</p>;
-    }
-    return (
+  if (loaded) {
+    return profile !== null ? (
       <Segment>
         <Grid>
           <Grid.Row columns={2}>
@@ -115,6 +120,8 @@ const ApplicantPublicProfile = ({ match }) => {
           </Grid>
         ))}
       </Segment>
+    ) : (
+      <p>No such profile exists</p>
     );
   } else return <p>Loading</p>;
 };
