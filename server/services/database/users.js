@@ -19,11 +19,12 @@ const getUserByEmail = (email) => {
     .then((result) => result.rows[0]);
 };
 
-const createUser = ({ email, password }) => {
+const createUser = ({ email, password, role }) => {
   return pool
-    .query("INSERT INTO users (email, password) values ($1, $2)", [
+    .query("INSERT INTO users (email, password, role) values ($1, $2, $3)", [
       email,
       password,
+      role
     ])
     .then((result) => result.rows);
 };

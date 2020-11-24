@@ -31,11 +31,12 @@ router.post("/login", async (req, res, next) => {
  * Users Registration
  */
 router.post("/register", async (req, res, next) => {
-	const { email, password } = req.body;
+	const { email, password, role } = req.body;
 
 	const user = {
 		email,
 		password,
+		role 
 	};
 
 	db.createUser(user)
