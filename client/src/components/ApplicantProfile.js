@@ -20,13 +20,13 @@ const ApplicantProfile = () => {
     employment_status: "full_time"
   });
 
-  const [experiences, setExperienceData] = useState([defaultExperience]);
+  const [experiences, setExperiences] = useState([defaultExperience]);
 
   const [profileCreated, setProfileCreated] = useState(null);
 
   // function creates a new form with the content described below
   const addExperience = () => {
-    setExperienceData([...experiences, defaultExperience]);
+    setExperiences([...experiences, defaultExperience]);
   };
 
   const handleChange = (event, result) => {
@@ -56,10 +56,10 @@ const ApplicantProfile = () => {
     if (targetData) {
       const { name, value } = targetData;
 
-      setExperienceData(updateExperiences(value, name, index));
+      setExperiences(updateExperiences(value, name, index));
     } else {
       const { name, value } = event.target;
-      setExperienceData(updateExperiences(value, name, index));
+      setExperiences(updateExperiences(value, name, index));
     }
   };
   const options = [
