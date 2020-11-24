@@ -2,7 +2,6 @@ import React from "react";
 import { Form } from "semantic-ui-react";
 import { DateInput } from "semantic-ui-calendar-react";
 
-// function opens form for old data and adds a new form for new data as required
 const Experience = ({ handleExperience, experiences, addExperience }) => {
   return (
     <Form.Group>
@@ -68,7 +67,6 @@ const Experience = ({ handleExperience, experiences, addExperience }) => {
       })}
       <br />
 
-      {/* Button opens a new form everytime when clicked */}
       <Form.Button primary onClick={addExperience} type="button">
         Add a new work experience
       </Form.Button>

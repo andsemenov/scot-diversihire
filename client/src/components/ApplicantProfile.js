@@ -24,7 +24,6 @@ const ApplicantProfile = () => {
 
   const [profileCreated, setProfileCreated] = useState(null);
 
-  // function creates a new form with the content described below
   const addExperience = () => {
     setExperiences([...experiences, defaultExperience]);
   };
@@ -34,7 +33,6 @@ const ApplicantProfile = () => {
     setProfileData({ ...profileData, [name]: value });
   };
 
-  // function merges new data with the old data
   const updateExperiences = (value, name, index) => {
     const updatedExperienceData = [...experiences];
     updatedExperienceData[index] = {
@@ -43,10 +41,6 @@ const ApplicantProfile = () => {
     };
     return updatedExperienceData;
   };
-
-  // }
-  // return experience;
-  // })// function merges new data with old data
 
   const handleExperience = ({ event, targetData, index }) => {
     if (targetData) {
@@ -73,7 +67,7 @@ const ApplicantProfile = () => {
   };
 
   return (
-    <Form.Group onSubmit={createProfile}>
+    <Form onSubmit={createProfile}>
       <Form.Field>
         <label htmlFor="job_title">Job title</label>
         <input
@@ -109,12 +103,9 @@ const ApplicantProfile = () => {
       <Experience
         experiences={experiences}
         handleExperience={handleExperience}
-        addExperience={
-          addExperience
-        } /* using function addExperience as a props in Experience Component */
+        addExperience={addExperience}
       />
 
-      {/* Button adds all form data to the database */}
       <Form.Button primary onClick={createProfile} type="submit">
         Create Profile
       </Form.Button>
@@ -122,7 +113,7 @@ const ApplicantProfile = () => {
       {profileCreated === false && (
         <div>Error! You have NOT created a profile</div>
       )}
-    </Form.Group>
+    </Form>
   );
 };
 
