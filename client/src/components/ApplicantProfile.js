@@ -35,18 +35,14 @@ const ApplicantProfile = () => {
   };
 
   // function merges new data with the old data
-  const updateExperiences = (value, name, index) =>
-    // experiences.map((experience, experienceIndex) => {
-    //   if (index === experienceIndex) {
-    // return { ...experience, [name]: value }; /*This return line helps to pick date from the calender*/
-    {
-      const updatedExperienceData = [...experiences];
-      updatedExperienceData[index] = {
-        ...updatedExperienceData[index],
-        [name]: value
-      };
-      return updatedExperienceData;
+  const updateExperiences = (value, name, index) => {
+    const updatedExperienceData = [...experiences];
+    updatedExperienceData[index] = {
+      ...updatedExperienceData[index],
+      [name]: value
     };
+    return updatedExperienceData;
+  };
 
   // }
   // return experience;
@@ -116,10 +112,10 @@ const ApplicantProfile = () => {
         addExperience={
           addExperience
         } /* using function addExperience as a props in Experience Component */
-      /> 
+      />
 
       {/* Button adds all form data to the database */}
-      <Form.Button primary onClick={createProfile} type="submit">   
+      <Form.Button primary onClick={createProfile} type="submit">
         Create Profile
       </Form.Button>
       {profileCreated && <Redirect to="/profile_creation_successful" />}
