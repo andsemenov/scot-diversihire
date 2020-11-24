@@ -8,16 +8,15 @@ const Home = () => {
     <div>
       <header className="home-header">
         <h1>Diversi-Hire</h1>
+        <div>
+          <Button fluid primary as={Link} to="/login">
+            Login{" "}
+          </Button>
+          <Button fluid primary as={Link} to="/signup">
+            Sign Up{" "}
+          </Button>
+        </div>
       </header>
-      <Button primary as={Link} to="/login">
-        Login
-      </Button>
-      <Button primary as={Link} to="/sign_up">
-        I'm an Applicant
-      </Button>
-      <Button primary as={Link} to="/sign_up">
-        I'm a Recruiter
-      </Button>
     </div>
   );
 };

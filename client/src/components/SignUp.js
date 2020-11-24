@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Button, Form, Radio } from "semantic-ui-react";
+import { signUp } from "../api/auth";
 import { Redirect } from "react-router-dom";
-//import { signApi } from "../api/auth";
 
-const SignUp = () => {
+function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [role, setRole] = useState("");
   const [redirectRoute, setRedirectRoute] = useState("");
 
   const handleChange = event => {
@@ -18,23 +18,16 @@ const SignUp = () => {
     }
   };
 
-  //   const loginSubmit = () => {
-  //     signApi(email, password)
-  //       .then(data => {
-  //         const token = data.token;
-  //         localStorage.setItem("token", token);
-  //         localStorage.setItem("user", JSON.stringify(data.user));
-  //         if (data.user && data.user.role === "applicant") {
-  //           setRedirectRoute("/applicant_create_profile");
-  //         } else if (data.user && data.user.role === "recruiter") {
-  //           setRedirectRoute("/public-applicant-profiles");
-  //         }
-  //       })
-  //       .catch(() => {
-  //         setError(true);
-  //         setRedirectRoute("");
-  //       });
-  //   };
+  const handleChangeRole = (_, { value }) => {
+    setRole(value);
+  };
+  const handleSignUp = () => {
+    if (email && password && role) {
+      signUp({ email, password, role }).then(response => {
+        setRedirectRoute("/login");
+      });
+    }
+  };
 
   return (
     <Form>
@@ -56,13 +49,29 @@ const SignUp = () => {
           placeholder="Password"
         />
       </Form.Field>
-      <Radio label="I am an Applicant" />
-      <Radio label="I am a Recruiter" />
-      <Button>Sign Up</Button>
 
-      {/* {redirectRoute && <Redirect to={redirectRoute} />} */}
+      <Form.Field>
+        <Radio
+          label="I am an Applicant"
+          name="radioGroup"
+          value="applicant"
+          checked={role === "applicant"}
+          onChange={handleChangeRole}
+        />
+      </Form.Field>
+      <Form.Field>
+        <Radio
+          label="I am a Recruiter"
+          name="radioGroup"
+          value="recruiter"
+          checked={role === "recruiter"}
+          onChange={handleChangeRole}
+        />
+      </Form.Field>
+      <Button onClick={handleSignUp}>Sign Up</Button>
+      {redirectRoute && <Redirect to={redirectRoute} />}
     </Form>
   );
-};
+}
 
 export default SignUp;
