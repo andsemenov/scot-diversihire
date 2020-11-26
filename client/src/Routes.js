@@ -17,8 +17,8 @@ const Routes = () => {
       <Route path="/about/" component={About} />
       <Route path="/status/" component={Status} />
       <Route path="/login" component={Login} />
-      <Route path="/applicant_create_profile" component={ApplicantProfile} />
-      <Route path="/profile_creation_successful" component={SuccessMessage} />
+      <Route path="/applicant-create-profile" component={ApplicantProfile} />
+      <Route path="/profile-creation-successful" component={SuccessMessage} />
       <Route
         path="/public-applicant-profiles/:public_id"
         component={ApplicantPublicProfile}
