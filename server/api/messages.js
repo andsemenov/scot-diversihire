@@ -1,24 +1,36 @@
 const express = require("express");
 const router = express.Router();
+const {
+  createMessage,
+  getMessagesByApplicantId,
+} = require("../services/database/message");
 
-//POST /api/messages/profile/:public_profile_id -> STATUS: 201 created
-router.post("/profile/:public_profile_id", (req, res) => {
-  res.status(201).send("created");
+router.post("/profile/:public_profile_id", async (req, res) => {
+  const message = req.body;
+  try {
+    await createMessage(message);
+    res.status(201).send("message is created");
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
 });
 
-router.get("/applicant/:user_id", (req, res) => {
-  res.send([
-    {
-      from: "recruiter@cyf.org",
-      message: "This is the text of the message",
-      to: "<profile_public_id>",
-    },
-    {
-      from: "recruiter@cyf.org",
-      message: "This is the text of the 2nd message",
-      to: "<profile_public_id_2>",
-    },
-  ]);
+router.get("/applicant/:user_id", async (req, res) => {
+  const id = req.params.user_id;
+  console.log(id);
+  try {
+    let messages = await getMessagesByApplicantId(id);
+
+    if (messages == null) {
+      return res.sendStatus(404);
+    }
+
+    res.send(messages);
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
 });
 
 module.exports = router;
