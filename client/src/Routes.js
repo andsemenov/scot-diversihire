@@ -5,9 +5,11 @@ import About from "./components/About";
 import Status from "./components/Status";
 import MenuHeader from "./components/MenuHeader";
 import Login from "./components/Login";
+import SignUp from "./components/SignUp";
 import ApplicantProfile from "./components/ApplicantProfile";
 import SuccessMessage from "./components/SuccessMessage";
-import ApplicantPublicProfile from "./components/ApplicantPublicProfile";
+import ViewApplicantProfile from "./components/ViewApplicantProfile";
+import ApplicantsList from "./components/ApplicantsList";
 
 const Routes = () => {
   return (
@@ -17,11 +19,18 @@ const Routes = () => {
       <Route path="/about/" component={About} />
       <Route path="/status/" component={Status} />
       <Route path="/login" component={Login} />
+      <Route path="/signup" component={SignUp} />
       <Route path="/applicant-create-profile" component={ApplicantProfile} />
       <Route path="/profile-creation-successful" component={SuccessMessage} />
       <Route
-        path="/public-applicant-profiles/:public_id"
-        component={ApplicantPublicProfile}
+        exact
+        path="/public-applicant-profiles"
+        component={ApplicantsList}
+      />
+      <Route
+        exact
+        path="/public-applicant-profiles/:id"
+        component={ViewApplicantProfile}
       />
     </Router>
   );
