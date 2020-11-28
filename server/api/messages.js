@@ -29,4 +29,19 @@ router.get("/applicant/:user_id", async (req, res) => {
   }
 });
 
+///
+router.post("/", async (req, res) => {
+  const message = req.body;
+  console.log(message);
+  try {
+    await createMessage(message);
+    res.status(201).send("message is created");
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
+});
+
+//////
+
 module.exports = router;

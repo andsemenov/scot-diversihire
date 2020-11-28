@@ -12,3 +12,8 @@ export const sendMessage = message => {
 export const getMessages = () => {
   return fetch("/api/messages").then(res => res.json());
 };
+/*
+export const getMessages = (profile_public_id) => {
+  return fetch(`/api/messages/${profile_public_id}`).then((res) => res.ok);
+};
+*/

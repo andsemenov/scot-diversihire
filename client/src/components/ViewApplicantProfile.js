@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Form, Grid, Segment, Label } from "semantic-ui-react";
+import { Grid, Segment, Label } from "semantic-ui-react";
 import { getProfile } from "../api/profiles";
+import ContactApplicantButton from "./ContactApplicantButton";
 import moment from "moment";
 
-const ViewApplicantProfile = ({ match }) => {
+const ViewApplicantProfile = ({ match }, props) => {
   const publicId = match.params.id;
   const [profile, setProfile] = useState(null);
   const [loaded, setLoaded] = useState(false);
@@ -27,7 +28,10 @@ const ViewApplicantProfile = ({ match }) => {
               <h2> APPLICANT PROFILE</h2>
             </Grid.Column>
             <Grid.Column width={4}>
-              <Form.Button primary>Contact Candidate</Form.Button>
+              <ContactApplicantButton
+                profilePublicId={profile.profile_public_id}
+                to={`/public-applicant-profiles/${profile.profile_public_id}`}
+              />
             </Grid.Column>
           </Grid.Row>
         </Grid>

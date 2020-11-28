@@ -17,7 +17,7 @@ const ContactApplicantButton = props => {
   const recruiterEmailAddress = user.email;
   const recruiterId = user.id;
   const [message, setMessage] = React.useState({
-    public_profile_id: `${props.profilePublicId}`,
+    profile_public_id: `${props.profilePublicId}`,
     message: `
     Hi, 
     I wanted to get in touch with you as at COMPANYNAME we are currently looking to hire some engineers that 
@@ -31,6 +31,8 @@ const ContactApplicantButton = props => {
   const handleChange = event => {
     setMessage({ ...message, message: event.target.value });
   };
+
+  console.log(props.isDisabled);
 
   return (
     <Modal
@@ -71,7 +73,6 @@ const ContactApplicantButton = props => {
           primary
           onClick={() => {
             sendMessage(message).then(res => {
-              console.log("***", res);
               props.updateApplicantPublicIds(
                 props.profilePublicId,
                 props.index

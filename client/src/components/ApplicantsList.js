@@ -14,6 +14,12 @@ const ApplicantsList = () => {
     setProfiles(response);
   };
 
+  /*   const fetchMessages = async () => {
+    const response = await getMessages();
+    console.log(response);
+    setMessages(response);
+  }; */
+
   const fetchMessages = async () => {
     const response = await getMessages();
     console.log(response);
@@ -30,12 +36,12 @@ const ApplicantsList = () => {
   }, [messages, profiles.length]);
 
   const updateApplicantPublicIds = (id, index) => {
-    const updatedExperienceData = [...messages];
-    updatedExperienceData[index] = {
-      ...updatedExperienceData[index],
+    const updatedApplicantPublicIds = [...messages];
+    updatedApplicantPublicIds[index] = {
+      ...updatedApplicantPublicIds[index],
       profile_public_id: id
     };
-    setMessages(updatedExperienceData);
+    setMessages(updatedApplicantPublicIds);
   };
 
   return profiles.map((profile, key) => {
@@ -76,7 +82,7 @@ const ApplicantsList = () => {
               <ContactApplicantButton
                 profilePublicId={profile.profile_public_id}
                 to={`/public-applicant-profiles/${profile.profile_public_id}`}
-                isDisabled={messages.find(
+                isDisabled={messages.includes(
                   message =>
                     message.profile_public_id === profile.profile_public_id
                 )}
