@@ -5,6 +5,14 @@ import { newProfile } from "../api/profiles";
 import Experience from "./Experience";
 
 const ApplicantProfile = () => {
+  const defaultExperience = {
+    company: "",
+    job_title: "",
+    description: "",
+    start_date: "",
+    end_date: ""
+  };
+
   const [profileData, setProfileData] = useState({
     job_title: "",
     bio: "",
@@ -12,34 +20,36 @@ const ApplicantProfile = () => {
     employment_status: "full_time"
   });
 
-  const [experienceData, setExperienceData] = useState([
-    {
-      company: "",
-      job_title: "",
-      description: "",
-      start_date: "",
-      end_date: ""
-    }
-  ]);
+  const [experiences, setExperiences] = useState([defaultExperience]);
 
   const [profileCreated, setProfileCreated] = useState(null);
+
+  const addExperience = () => {
+    setExperiences([...experiences, defaultExperience]);
+  };
 
   const handleChange = (event, result) => {
     const { name, value } = result || event.target;
     setProfileData({ ...profileData, [name]: value });
   };
 
-  const handleExperience = ({ event, targetData, experienceIndex }) => {
+  const updateExperiences = (value, name, index) => {
+    const updatedExperienceData = [...experiences];
+    updatedExperienceData[index] = {
+      ...updatedExperienceData[index],
+      [name]: value
+    };
+    return updatedExperienceData;
+  };
+
+  const handleExperience = ({ event, targetData, index }) => {
     if (targetData) {
       const { name, value } = targetData;
-      setExperienceData([
-        { ...experienceData[experienceIndex], [name]: value }
-      ]);
+
+      setExperiences(updateExperiences(value, name, index));
     } else {
       const { name, value } = event.target;
-      setExperienceData([
-        { ...experienceData[experienceIndex], [name]: value }
-      ]);
+      setExperiences(updateExperiences(value, name, index));
     }
   };
   const options = [
@@ -49,7 +59,7 @@ const ApplicantProfile = () => {
   ];
 
   const createProfile = () => {
-    const formData = { ...profileData, experiences: experienceData };
+    const formData = { ...profileData, experiences: experiences };
     const token = localStorage.getItem("token");
     newProfile(formData, token).then(isSuccessful => {
       setProfileCreated(isSuccessful);
@@ -91,10 +101,12 @@ const ApplicantProfile = () => {
         onChange={handleChange}
       />
       <Experience
-        experienceData={experienceData}
+        experiences={experiences}
         handleExperience={handleExperience}
+        addExperience={addExperience}
       />
-      <Form.Button primary type="submit">
+
+      <Form.Button primary onClick={createProfile} type="submit">
         Create Profile
       </Form.Button>
       {profileCreated && <Redirect to="/profile_creation_successful" />}
