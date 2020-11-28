@@ -6,7 +6,6 @@ export const sendMessage = message => {
       "content-type": "application/json"
     }
   };
-  console.log(postMessage);
   return fetch("/api/messages", postMessage).then(res => res.ok);
 };
 

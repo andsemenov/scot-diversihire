@@ -20,8 +20,8 @@ const Routes = () => {
       <Route path="/status/" component={Status} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={SignUp} />
-      <Route path="/applicant_create_profile" component={ApplicantProfile} />
-      <Route path="/profile_creation_successful" component={SuccessMessage} />
+      <Route path="/applicant-create-profile" component={ApplicantProfile} />
+      <Route path="/profile-creation-successful" component={SuccessMessage} />
       <Route
         exact
         path="/public-applicant-profiles"

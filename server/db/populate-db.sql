@@ -20,3 +20,5 @@ INSERT INTO work_experience (profile_id, company, job_title, description, start_
 INSERT INTO work_experience (profile_id, company, job_title, description, start_date, end_date) values (3, 'Orange Bank Plc', 'Software Engineer', 'In vehicula lorem at interdum malesuada', '2009-08-01', '2020-05-30');
 INSERT INTO work_experience (profile_id, company, job_title, description, start_date, end_date) values (4, 'CYF Plc', 'Trainee Web Developer', 'In vehicula lorem at interdum malesuada', '2020-05-30', '2020-11-11');
 INSERT INTO work_experience (profile_id, company, job_title, description, start_date, end_date) values (4, 'Pay-ed Financial Services', 'Financial Analyst', 'In vehicula lorem at interdum malesuada', '2009-08-01', '2020-05-30');
+
+INSERT INTO message (recruiter_id, profile_public_id, message) VALUES (4, '1Xtq-304SMKRwLJQWw-mR', 'This is the text of the 2nd message');
