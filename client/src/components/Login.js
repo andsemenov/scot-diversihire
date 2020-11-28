@@ -25,7 +25,7 @@ const Login = () => {
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(data.user));
         if (data.user && data.user.role === "applicant") {
-          setRedirectRoute("/applicant_create_profile");
+          setRedirectRoute("/applicant-create-profile");
         } else if (data.user && data.user.role === "recruiter") {
           setRedirectRoute("/public-applicant-profiles");
         }

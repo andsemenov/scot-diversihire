@@ -13,3 +13,15 @@ export const newProfile = (profileData, token) => {
 export const getAllProfiles = () => {
   return fetch("/api/profiles").then(res => res.json());
 };
+
+export const getProfile = public_profile_id => {
+  const getProfile = {
+    method: "GET",
+    headers: {
+      "content-type": "application/json"
+    }
+  };
+  return fetch(`/api/profiles/${public_profile_id}`, getProfile).then(res =>
+    res.json()
+  );
+};
