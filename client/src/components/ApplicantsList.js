@@ -2,19 +2,41 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Grid, Label, Button, Segment, Header } from "semantic-ui-react";
 import { getAllProfiles } from "../api/profiles";
+import { getMessages } from "../api/messages";
 import ContactApplicantButton from "./ContactApplicantButton";
 import "../styles/ApplicantsList.css";
 
 const ApplicantsList = () => {
   const [profiles, setProfiles] = useState([]);
+  const [messages, setMessages] = useState([]);
   const fetchProfiles = async () => {
     const response = await getAllProfiles();
     setProfiles(response);
   };
 
+  const fetchMessages = async () => {
+    const response = await getMessages();
+    console.log(response);
+    setMessages(response);
+  };
+
   useEffect(() => {
-    fetchProfiles();
-  }, []);
+    if (!profiles.length) {
+      fetchProfiles();
+    }
+    if (!messages.length) {
+      fetchMessages();
+    }
+  }, [messages, profiles.length]);
+
+  const updateApplicantPublicIds = (id, index) => {
+    const updatedExperienceData = [...messages];
+    updatedExperienceData[index] = {
+      ...updatedExperienceData[index],
+      profile_public_id: id
+    };
+    setMessages(updatedExperienceData);
+  };
 
   return profiles.map((profile, key) => {
     return (
@@ -52,7 +74,14 @@ const ApplicantsList = () => {
 
             <div key={key + "12d"} className="button-style">
               <ContactApplicantButton
-                profilePublicId={profile.id /* profile_public_id */}
+                profilePublicId={profile.profile_public_id}
+                to={`/public-applicant-profiles/${profile.profile_public_id}`}
+                isDisabled={messages.find(
+                  message =>
+                    message.profile_public_id === profile.profile_public_id
+                )}
+                updateApplicantPublicIds={updateApplicantPublicIds}
+                index={key}
               />
             </div>
           </Grid.Column>

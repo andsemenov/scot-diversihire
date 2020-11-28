@@ -6,44 +6,40 @@ import {
   TextArea,
   Icon,
   Header,
-  Grid,
-  Segment,
-  Container
+  Grid
 } from "semantic-ui-react";
+import { sendMessage } from "../api/messages";
 
 const ContactApplicantButton = props => {
   const [open, setOpen] = React.useState(false);
-  const companyName = "Apple"; //to remove
+  const [messageSent, setMessageSent] = React.useState(null);
   const user = JSON.parse(localStorage.getItem("user"));
   const recruiterEmailAddress = user.email;
+  const recruiterId = user.id;
   const [message, setMessage] = React.useState({
-    profile_id: "",
-    recruiter_id: "",
+    from: `${recruiterId}`,
     message: `
     Hi, 
-    I wanted to get in touch with you as at ${companyName} we are currently looking to hire some engineers that match your profile.
+    I wanted to get in touch with you as at COMPANYNAME we are currently looking to hire some engineers that 
+    match your profile.
     If you would be interested in speaking to me some more please reply to this email and we can arrange a time to speak. 
     I look forward to speaking to you please get in touch on my email address below.
-    ${recruiterEmailAddress}`
+    ${recruiterEmailAddress}`,
+    to: `${props.profilePublicId}`
   });
   const handleChange = event => {
     setMessage({ ...message, message: event.target.value });
   };
-  console.log(props.profilePublicId);
-  console.log(message);
-  const sendMessage = () => {
-    /*  newMessage(...message, ); */
-    console.log("aaaa", message);
-  };
 
+  console.log(messageSent);
   return (
     <Modal
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
       trigger={
-        <Button fluid primary>
-          Contact Applicant
+        <Button disabled={props.isDisabled} fluid primary>
+          {props.isDisabled ? "Contacted" : "Contact Applicant"}
         </Button>
       }
     >
@@ -73,10 +69,17 @@ const ContactApplicantButton = props => {
         <Button
           content="Contact Applicant"
           primary
-          onClick={event => {
-            sendMessage();
+          onClick={() => {
+            sendMessage(message).then(res => {
+              console.log("***", res);
+              props.updateApplicantPublicIds(
+                props.profilePublicId,
+                props.index
+              );
 
-            setOpen(false);
+              setMessageSent(res);
+              setOpen(false);
+            });
           }}
           positive
         />
