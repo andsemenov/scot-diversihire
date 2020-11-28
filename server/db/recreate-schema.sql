@@ -5,6 +5,7 @@ DROP TABLE if exists education;
 DROP TABLE if exists profile;
 DROP TYPE if exists employment_status_type;
 DROP TABLE if exists users;
+DROP TABLE IF EXISTS message;
 
 
 -- Create tables
@@ -50,4 +51,11 @@ job_title           VARCHAR(50),
 description         VARCHAR(250),
 start_date          DATE,
 end_date            DATE
+);
+
+CREATE TABLE message(
+  id                SERIAL PRIMARY KEY,
+  recruiter_id      INT REFERENCES users(id),
+  profile_public_id VARCHAR(50),
+  message           VARCHAR(2500) NOT NULL
 );
