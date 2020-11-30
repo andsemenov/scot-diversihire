@@ -32,8 +32,6 @@ const ContactApplicantButton = props => {
     setMessage({ ...message, message: event.target.value });
   };
 
-  console.log(props.isDisabled);
-
   return (
     <Modal
       onClose={() => setOpen(false)}
@@ -77,7 +75,6 @@ const ContactApplicantButton = props => {
                 props.profilePublicId,
                 props.index
               );
-
               setMessageSent(res);
               setOpen(false);
             });

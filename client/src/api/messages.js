@@ -6,14 +6,11 @@ export const sendMessage = message => {
       "content-type": "application/json"
     }
   };
-  return fetch("/api/messages", postMessage).then(res => res.ok);
+  return fetch("/api/messages/profile", postMessage).then(res => res.ok);
 };
 
-export const getMessages = () => {
-  return fetch("/api/messages").then(res => res.json());
+export const getRecruiterMessages = recruiter_id => {
+  return fetch(`/api/messages/recruiter/${recruiter_id}`).then(res =>
+    res.json()
+  );
 };
-/*
-export const getMessages = (profile_public_id) => {
-  return fetch(`/api/messages/${profile_public_id}`).then((res) => res.ok);
-};
-*/

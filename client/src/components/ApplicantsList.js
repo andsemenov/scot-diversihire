@@ -2,38 +2,35 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Grid, Label, Button, Segment, Header } from "semantic-ui-react";
 import { getAllProfiles } from "../api/profiles";
-import { getMessages } from "../api/messages";
+import { getRecruiterMessages } from "../api/messages";
 import ContactApplicantButton from "./ContactApplicantButton";
 import "../styles/ApplicantsList.css";
 
 const ApplicantsList = () => {
   const [profiles, setProfiles] = useState([]);
   const [messages, setMessages] = useState([]);
-  const fetchProfiles = async () => {
-    const response = await getAllProfiles();
-    setProfiles(response);
-  };
 
-  /*   const fetchMessages = async () => {
-    const response = await getMessages();
-    console.log(response);
-    setMessages(response);
-  }; */
-
-  const fetchMessages = async () => {
-    const response = await getMessages();
-    console.log(response);
-    setMessages(response);
-  };
+  const user = JSON.parse(localStorage.getItem("user"));
+  const recruiterId = user.id;
 
   useEffect(() => {
+    const fetchProfiles = async () => {
+      const response = await getAllProfiles();
+      setProfiles(response);
+    };
+
+    const fetchMessages = async () => {
+      const response = await getRecruiterMessages(recruiterId);
+      setMessages(response);
+    };
+
     if (!profiles.length) {
       fetchProfiles();
     }
     if (!messages.length) {
       fetchMessages();
     }
-  }, [messages, profiles.length]);
+  }, [messages, profiles, recruiterId]);
 
   const updateApplicantPublicIds = (id, index) => {
     const updatedApplicantPublicIds = [...messages];
@@ -82,7 +79,7 @@ const ApplicantsList = () => {
               <ContactApplicantButton
                 profilePublicId={profile.profile_public_id}
                 to={`/public-applicant-profiles/${profile.profile_public_id}`}
-                isDisabled={messages.includes(
+                isDisabled={messages.some(
                   message =>
                     message.profile_public_id === profile.profile_public_id
                 )}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Grid, Segment, Label } from "semantic-ui-react";
 import { getProfile } from "../api/profiles";
 import ContactApplicantButton from "./ContactApplicantButton";
+import { getRecruiterMessages } from "../api/messages";
 import moment from "moment";
 
 const ViewApplicantProfile = ({ match }, props) => {
@@ -19,6 +20,29 @@ const ViewApplicantProfile = ({ match }, props) => {
     );
   }, [publicId]);
 
+  const [messages, setMessages] = useState([]);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const recruiterId = user.id;
+
+  useEffect(() => {
+    const fetchMessages = async () => {
+      const response = await getRecruiterMessages(recruiterId);
+      setMessages(response);
+    };
+    if (!messages.length) {
+      fetchMessages();
+    }
+  }, [messages, recruiterId]);
+
+  const updateApplicantPublicIds = (id, index) => {
+    const updatedApplicantPublicIds = [...messages];
+    updatedApplicantPublicIds[index] = {
+      ...updatedApplicantPublicIds[index],
+      profile_public_id: id
+    };
+    setMessages(updatedApplicantPublicIds);
+  };
+
   if (loaded) {
     return profile !== null ? (
       <Segment>
@@ -31,6 +55,12 @@ const ViewApplicantProfile = ({ match }, props) => {
               <ContactApplicantButton
                 profilePublicId={profile.profile_public_id}
                 to={`/public-applicant-profiles/${profile.profile_public_id}`}
+                isDisabled={messages.some(
+                  message =>
+                    message.profile_public_id === profile.profile_public_id
+                )}
+                updateApplicantPublicIds={updateApplicantPublicIds}
+                index={0}
               />
             </Grid.Column>
           </Grid.Row>
