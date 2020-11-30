@@ -17,7 +17,7 @@ const ContactApplicantButton = props => {
   const recruiterEmailAddress = user.email;
   const recruiterId = user.id;
   const [message, setMessage] = React.useState({
-    profile_public_id: `${props.profilePublicId}`,
+    profile_public_id: props.profilePublicId,
     message: `
     Hi, 
     I wanted to get in touch with you as at COMPANYNAME we are currently looking to hire some engineers that 
@@ -25,7 +25,7 @@ const ContactApplicantButton = props => {
     If you would be interested in speaking to me some more please reply to this email and we can arrange a time to speak. 
     I look forward to speaking to you please get in touch on my email address below.
     ${recruiterEmailAddress}`,
-    recruiter_id: `${recruiterId}`
+    recruiter_id: recruiterId
   });
 
   const handleChange = event => {
