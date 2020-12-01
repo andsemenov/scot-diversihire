@@ -2,43 +2,70 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Grid, Label, Button, Segment, Header } from "semantic-ui-react";
 import { getAllProfiles } from "../api/profiles";
+import { getRecruiterMessages } from "../api/messages";
+import ContactApplicantButton from "./ContactApplicantButton";
 import "../styles/ApplicantsList.css";
 
 const ApplicantsList = () => {
   const [profiles, setProfiles] = useState([]);
-  const fetchProfiles = async () => {
-    const response = await getAllProfiles();
-    setProfiles(response);
-  };
+  const [messages, setMessages] = useState([]);
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const recruiterId = user.id;
 
   useEffect(() => {
-    fetchProfiles();
-  }, []);
+    const fetchProfiles = async () => {
+      const response = await getAllProfiles();
+      setProfiles(response);
+    };
 
-  return profiles.map(profile => {
+    const fetchMessages = async () => {
+      const response = await getRecruiterMessages(recruiterId);
+      setMessages(response);
+    };
+
+    if (!profiles.length) {
+      fetchProfiles();
+    }
+    if (!messages.length) {
+      fetchMessages();
+    }
+  }, [messages, profiles, recruiterId]);
+
+  const updateApplicantPublicIds = (id, index) => {
+    const updatedApplicantPublicIds = [...messages];
+    updatedApplicantPublicIds[index] = {
+      ...updatedApplicantPublicIds[index],
+      profile_public_id: id
+    };
+    setMessages(updatedApplicantPublicIds);
+  };
+
+  return profiles.map((profile, key) => {
     return (
-      <Segment raised>
-        <Grid>
-          <Grid.Column width={12}>
-            <Label as="label" color="white" ribbon="left">
+      <Segment key={key + "1s"} raised>
+        <Grid key={key + "2g"}>
+          <Grid.Column key={key + "3g"} width={12}>
+            <Label key={key + "4l"} as="label">
               Job Title
             </Label>
-            <Segment size="small">
-              <Header as="h2" size="small">
+            <Segment key={key + "5s"} size="small">
+              <Header key={key + "6h"} as="h2" size="small">
                 {profile.job_title}
               </Header>
             </Segment>
-            <Label as="label" color="white" ribbon="left">
+            <Label key={key + "7l"} as="label">
               Bio
             </Label>
-            <Segment>
+            <Segment key={key + "8s"}>
               <p>{profile.bio}</p>
             </Segment>
           </Grid.Column>
 
-          <Grid.Column width={3}>
-            <div className="button-style">
+          <Grid.Column key={key + "9g"} width={3}>
+            <div key={key + "10d"} className="button-style">
               <Button
+                key={key + "11b"}
                 fluid
                 primary
                 as={Link}
@@ -48,10 +75,17 @@ const ApplicantsList = () => {
               </Button>
             </div>
 
-            <div className="button-style">
-              <Button fluid primary>
-                Contact Applicant
-              </Button>
+            <div key={key + "12d"} className="button-style">
+              <ContactApplicantButton
+                profilePublicId={profile.profile_public_id}
+                to={`/public-applicant-profiles/${profile.profile_public_id}`}
+                isDisabled={messages.some(
+                  message =>
+                    message.profile_public_id === profile.profile_public_id
+                )}
+                updateApplicantPublicIds={updateApplicantPublicIds}
+                index={key}
+              />
             </div>
           </Grid.Column>
         </Grid>

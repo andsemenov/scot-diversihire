@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Form, Grid, Segment, Label } from "semantic-ui-react";
+import { Grid, Segment, Label } from "semantic-ui-react";
 import { getProfile } from "../api/profiles";
+import ContactApplicantButton from "./ContactApplicantButton";
+import { getRecruiterMessages } from "../api/messages";
 import moment from "moment";
 
-const ViewApplicantProfile = ({ match }) => {
+const ViewApplicantProfile = ({ match }, props) => {
   const publicId = match.params.id;
   const [profile, setProfile] = useState(null);
   const [loaded, setLoaded] = useState(false);
@@ -18,6 +20,29 @@ const ViewApplicantProfile = ({ match }) => {
     );
   }, [publicId]);
 
+  const [messages, setMessages] = useState([]);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const recruiterId = user.id;
+
+  useEffect(() => {
+    const fetchMessages = async () => {
+      const response = await getRecruiterMessages(recruiterId);
+      setMessages(response);
+    };
+    if (!messages.length) {
+      fetchMessages();
+    }
+  }, [messages, recruiterId]);
+
+  const updateApplicantPublicIds = (id, index) => {
+    const updatedApplicantPublicIds = [...messages];
+    updatedApplicantPublicIds[index] = {
+      ...updatedApplicantPublicIds[index],
+      profile_public_id: id
+    };
+    setMessages(updatedApplicantPublicIds);
+  };
+
   if (loaded) {
     return profile !== null ? (
       <Segment>
@@ -27,7 +52,16 @@ const ViewApplicantProfile = ({ match }) => {
               <h2> APPLICANT PROFILE</h2>
             </Grid.Column>
             <Grid.Column width={4}>
-              <Form.Button primary>Contact Candidate</Form.Button>
+              <ContactApplicantButton
+                profilePublicId={profile.profile_public_id}
+                to={`/public-applicant-profiles/${profile.profile_public_id}`}
+                isDisabled={messages.some(
+                  message =>
+                    message.profile_public_id === profile.profile_public_id
+                )}
+                updateApplicantPublicIds={updateApplicantPublicIds}
+                index={0}
+              />
             </Grid.Column>
           </Grid.Row>
         </Grid>
