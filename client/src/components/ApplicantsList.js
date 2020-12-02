@@ -40,7 +40,7 @@ const ApplicantsList = () => {
     };
     setMessages(updatedApplicantPublicIds);
   };
-  console.log(messages);
+
   return profiles.map((profile, key) => {
     return (
       <Segment key={key + "1s"} raised>
