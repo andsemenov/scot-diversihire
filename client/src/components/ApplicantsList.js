@@ -81,6 +81,7 @@ const ApplicantsList = () => {
                 to={`/public-applicant-profiles/${profile.profile_public_id}`}
                 isDisabled={messages.some(
                   message =>
+                    message.recruiter_id === recruiterId &&
                     message.profile_public_id === profile.profile_public_id
                 )}
                 updateApplicantPublicIds={updateApplicantPublicIds}
