@@ -9,21 +9,14 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [redirectRoute, setRedirectRoute] = useState("");
-  //
   const [applicantId, SetApplicantId] = useState(null);
-  //const [profile, setProfile] = useState(null);
 
   useEffect(() => {
     const fetchProfile = async applicantId => {
-      try {
-        const response = await getProfileByApplicantId(applicantId);
-        if (response) {
-          console.log("profile"); //setRedirectRoute("/applicant-inbox");
-        }
-      } catch (err) {
-        //alert(err);
-        console.log("error"); // setRedirectRoute("/applicant-create-profile");
-      }
+      const response = await getProfileByApplicantId(applicantId);
+      if (Object.keys(response).length !== 0) {
+        setRedirectRoute("/applicant-inbox");
+      } else setRedirectRoute("/applicant-create-profile");
     };
 
     if (applicantId) {
@@ -47,10 +40,7 @@ const Login = () => {
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(data.user));
         if (data.user && data.user.role === "applicant") {
-          // SetUser(JSON.parse(localStorage.getItem("user")));
           SetApplicantId(data.user.id);
-
-          // setRedirectRoute("/applicant-create-profile");
         } else if (data.user && data.user.role === "recruiter") {
           setRedirectRoute("/public-applicant-profiles");
         }

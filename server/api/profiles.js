@@ -49,22 +49,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/:applicant_id", async (req, res) => {
-  const id = req.params.applicant_id;
-  try {
-    let profile = await getProfileByApplicantId(id);
-
-    if (profile == null) {
-      return res.sendStatus(404);
-    }
-    res.send(profile);
-  } catch (e) {
-    console.log(e);
-    res.sendStatus(500);
-  }
-});
-
-/* router.get("/:public_id", async (req, res) => {
+router.get("/:public_id", async (req, res) => {
   const id = req.params.public_id;
   try {
     let profile = await getProfileByPublicId(id);
@@ -80,13 +65,27 @@ router.get("/:applicant_id", async (req, res) => {
       educations: await getEducationsByProfileId(profileId),
       experiences: await getWorkExperiencesByProfileId(profileId),
     };
- 
+
     res.send(profile);
   } catch (e) {
     console.log(e);
     res.sendStatus(500);
   }
 });
-*/
+
+router.get("/applicant/:applicant_id", async (req, res) => {
+  const id = req.params.applicant_id;
+  try {
+    let profile = await getProfileByApplicantId(id);
+
+    if (profile == null) {
+      profile = {};
+    }
+    res.send(profile);
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
+});
 
 module.exports = router;
