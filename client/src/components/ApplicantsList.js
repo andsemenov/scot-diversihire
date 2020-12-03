@@ -36,7 +36,8 @@ const ApplicantsList = () => {
     const updatedApplicantPublicIds = [...messages];
     updatedApplicantPublicIds[index] = {
       ...updatedApplicantPublicIds[index],
-      profile_public_id: id
+      profile_public_id: id,
+      recruiter_id: recruiterId
     };
     setMessages(updatedApplicantPublicIds);
   };
