@@ -25,3 +25,7 @@ export const getProfile = public_profile_id => {
     res.json()
   );
 };
+
+export const getProfileByApplicantId = applicant_id => {
+  return fetch(`/api/profiles/${applicant_id}`).then(res => res.json());
+};
