@@ -16,8 +16,8 @@ router.post("/profile/:public_profile_id", async (req, res) => {
   }
 });
 
-router.get("/applicant/:user_id", async (req, res) => {
-  const id = req.params.user_id;
+router.get("/applicant/:applicant_id", async (req, res) => {
+  const id = req.params.applicant_id;
 
   try {
     let messages = await getMessagesByApplicantId(id);

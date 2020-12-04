@@ -13,3 +13,7 @@ export const sendMessage = message => {
 export const getMessages = () => {
   return fetch("/api/messages").then(res => res.json());
 };
+
+export const getMessagesByApplicantId = id => {
+  return fetch(`/api/messages/applicant/${id}`).then(res => res.json());
+};

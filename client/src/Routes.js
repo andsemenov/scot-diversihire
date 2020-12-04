@@ -10,6 +10,7 @@ import ApplicantProfile from "./components/ApplicantProfile";
 import SuccessMessage from "./components/SuccessMessage";
 import ViewApplicantProfile from "./components/ViewApplicantProfile";
 import ApplicantsList from "./components/ApplicantsList";
+import ApplicantInbox from "./components/ApplicantInbox";
 
 const Routes = () => {
   return (
@@ -22,6 +23,7 @@ const Routes = () => {
       <Route path="/signup" component={SignUp} />
       <Route path="/applicant-create-profile" component={ApplicantProfile} />
       <Route path="/profile-creation-successful" component={SuccessMessage} />
+      <Route path="/applicant-inbox" component={ApplicantInbox} />
       <Route
         exact
         path="/public-applicant-profiles"
