@@ -2,7 +2,7 @@ const express = require("express");
 const {
   createProfile,
   getAllProfiles,
-  //getProfileByPublicId,
+  getProfileByPublicId,
   getProfileByApplicantId,
 } = require("../services/database/profile");
 const {
