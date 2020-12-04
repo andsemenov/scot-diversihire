@@ -3,7 +3,7 @@ const router = express.Router();
 const {
   createMessage,
   getMessagesByApplicantId,
-  getPublicIdsByRecruiterId,
+  getMessagesByRecruiterId,
 } = require("../services/database/message");
 
 router.post("/profile", async (req, res) => {
@@ -20,7 +20,7 @@ router.post("/profile", async (req, res) => {
 router.get("/recruiter/:recruiter_id", async (req, res) => {
   const id = req.params.recruiter_id;
   try {
-    let messages = await getPublicIdsByRecruiterId(id);
+    let messages = await getMessagesByRecruiterId(id);
     res.send(messages);
   } catch (e) {
     console.log(e);

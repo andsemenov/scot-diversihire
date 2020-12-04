@@ -36,7 +36,8 @@ const ApplicantsList = () => {
     const updatedApplicantPublicIds = [...messages];
     updatedApplicantPublicIds[index] = {
       ...updatedApplicantPublicIds[index],
-      profile_public_id: id
+      profile_public_id: id,
+      recruiter_id: recruiterId
     };
     setMessages(updatedApplicantPublicIds);
   };
@@ -81,6 +82,7 @@ const ApplicantsList = () => {
                 to={`/public-applicant-profiles/${profile.profile_public_id}`}
                 isDisabled={messages.some(
                   message =>
+                    message.recruiter_id === recruiterId &&
                     message.profile_public_id === profile.profile_public_id
                 )}
                 updateApplicantPublicIds={updateApplicantPublicIds}
