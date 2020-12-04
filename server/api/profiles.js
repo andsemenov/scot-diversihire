@@ -79,7 +79,7 @@ router.get("/applicant/:applicant_id", async (req, res) => {
     let profile = await getProfileByApplicantId(id);
 
     if (profile == null) {
-      profile = {};
+      profile = [];
     }
     res.send(profile);
   } catch (e) {

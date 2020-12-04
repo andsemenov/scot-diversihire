@@ -31,7 +31,7 @@ const getProfileByPublicId = (profileId) => {
 const getProfileByApplicantId = (applicantId) => {
   return pool
     .query("SELECT * FROM profile WHERE applicant_id=$1", [applicantId])
-    .then((result) => result.rows[0]);
+    .then((result) => result.rows);
 };
 
 module.exports = {
