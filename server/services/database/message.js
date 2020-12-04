@@ -9,7 +9,7 @@ const createMessage = ({ recruiter_id, profile_public_id, message }) => {
   );
 };
 
-const getPublicIdsByRecruiterId = (id) => {
+const getMessagesByRecruiterId = (id) => {
   return pool
     .query(
       "SELECT profile_public_id, recruiter_id FROM message WHERE recruiter_id=$1",
@@ -32,5 +32,5 @@ const getMessagesByApplicantId = (id) => {
 module.exports = {
   createMessage,
   getMessagesByApplicantId,
-  getPublicIdsByRecruiterId,
+  getMessagesByRecruiterId,
 };
