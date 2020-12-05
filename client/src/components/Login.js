@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
+import { getProfileByApplicantId } from "../api/profiles";
 import { signApi } from "../api/auth";
 
 const Login = () => {
@@ -8,6 +9,20 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [redirectRoute, setRedirectRoute] = useState("");
+  const [applicantId, SetApplicantId] = useState(null);
+
+  useEffect(() => {
+    const fetchProfile = async applicantId => {
+      const response = await getProfileByApplicantId(applicantId);
+      if (!response.length) {
+        setRedirectRoute("/applicant-inbox");
+      } else setRedirectRoute("/applicant-create-profile");
+    };
+
+    if (applicantId) {
+      fetchProfile(applicantId);
+    }
+  }, [applicantId]);
 
   const handleChange = event => {
     if (event.target.name === "email") {
@@ -25,7 +40,7 @@ const Login = () => {
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(data.user));
         if (data.user && data.user.role === "applicant") {
-          setRedirectRoute("/applicant-create-profile");
+          SetApplicantId(data.user.id);
         } else if (data.user && data.user.role === "recruiter") {
           setRedirectRoute("/public-applicant-profiles");
         }
