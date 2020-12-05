@@ -30,6 +30,7 @@ router.get("/recruiter/:recruiter_id", async (req, res) => {
 
 router.get("/applicant/:user_id", async (req, res) => {
   const id = req.params.user_id;
+
   try {
     let messages = await getMessagesByApplicantId(id);
     res.send(messages);

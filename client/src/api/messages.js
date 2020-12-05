@@ -14,3 +14,7 @@ export const getRecruiterMessages = recruiter_id => {
     res.json()
   );
 };
+
+export const getMessagesByApplicantId = id => {
+  return fetch(`/api/messages/applicant/${id}`).then(res => res.json());
+};
