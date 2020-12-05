@@ -4,7 +4,7 @@ DROP TABLE if exists education;
 DROP TABLE if exists profile;
 DROP TYPE if exists employment_status_type;
 DROP TABLE if exists message;
-DROP TABLE if exists users;
+DROP TABLE if exists users CASCADE;
 
 -- Create tables
 CREATE TABLE users (

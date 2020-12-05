@@ -3,6 +3,7 @@ const {
   createProfile,
   getAllProfiles,
   getProfileByPublicId,
+  getProfileByApplicantId,
 } = require("../services/database/profile");
 const {
   createWorkExperience,
@@ -13,7 +14,7 @@ const router = express.Router();
 const { nanoid } = require("nanoid");
 const passport = require("passport");
 
-/** route is /profiles/ (status is defined as prefix in index.js) */
+/** route is api/profiles/ (status is defined as prefix in index.js) */
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
@@ -25,7 +26,7 @@ router.post(
       const { experiences } = req.body;
       const newProfile = await createProfile(db_newProfile);
       await Promise.all(
-        experiences.map(experience =>
+        experiences.map((experience) =>
           createWorkExperience({ ...experience, profile_id: newProfile.id })
         )
       );
@@ -39,10 +40,10 @@ router.post(
 
 router.get("/", (req, res) => {
   getAllProfiles()
-    .then(data => {
+    .then((data) => {
       res.send(data);
     })
-    .catch(err => {
+    .catch((err) => {
       console.error(err);
       res.send(500);
     });
@@ -65,6 +66,21 @@ router.get("/:public_id", async (req, res) => {
       experiences: await getWorkExperiencesByProfileId(profileId),
     };
 
+    res.send(profile);
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
+});
+
+router.get("/applicant/:applicant_id", async (req, res) => {
+  const id = req.params.applicant_id;
+  try {
+    let profile = await getProfileByApplicantId(id);
+
+    if (profile === null || !profile.length) {
+      profile = [];
+    }
     res.send(profile);
   } catch (e) {
     console.log(e);

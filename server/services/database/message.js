@@ -5,17 +5,26 @@ const pool = new Pool(config);
 const createMessage = ({ recruiter_id, profile_public_id, message }) => {
   return pool.query(
     "INSERT INTO message (recruiter_id, profile_public_id, message) values ($1, $2, $3)",
-    [recruiter_id, profile_public_id, message],
+    [recruiter_id, profile_public_id, message]
   );
+};
+
+const getMessagesByRecruiterId = (id) => {
+  return pool
+    .query(
+      "SELECT profile_public_id, recruiter_id FROM message WHERE recruiter_id=$1",
+      [id]
+    )
+    .then((result) => result.rows);
 };
 
 const getMessagesByApplicantId = (id) => {
   return pool
     .query(
-      "SELECT message.*, users.email FROM message INNER JOIN profile ON profile.profile_public_id=message.profile_public_id"
-        + " INNER JOIN users ON message.recruiter_id=users.id"
-        + " WHERE profile.applicant_id=$1",
-      [id],
+      "SELECT message.*, users.email FROM message INNER JOIN profile ON profile.profile_public_id=message.profile_public_id" +
+        " INNER JOIN users ON message.recruiter_id=users.id" +
+        " WHERE profile.applicant_id=$1",
+      [id]
     )
     .then((result) => result.rows);
 };
@@ -23,4 +32,5 @@ const getMessagesByApplicantId = (id) => {
 module.exports = {
   createMessage,
   getMessagesByApplicantId,
+  getMessagesByRecruiterId,
 };
