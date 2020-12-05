@@ -15,7 +15,7 @@ const ApplicantInbox = () => {
         setMessages([]);
       }
     };
-    if (user.role === "applicant" && !messages.length) {
+    if (user && user.role === "applicant" && !messages.length) {
       fetchMessages();
     }
   }, [user, messages]);
