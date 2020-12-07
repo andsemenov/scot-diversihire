@@ -71,9 +71,11 @@ const Login = () => {
           placeholder="Password"
         />
       </Form.Field>
-      <Button primary onClick={loginSubmit} type="submit">
-        Login
-      </Button>
+      <div className="button-style">
+        <Button primary onClick={loginSubmit} type="submit">
+          LOGIN
+        </Button>
+      </div>
       {error ? <div>Incorrect email or password</div> : null}
       {redirectRoute && <Redirect to={redirectRoute} />}
     </Form>

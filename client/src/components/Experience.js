@@ -66,10 +66,11 @@ const Experience = ({ handleExperience, experiences, addExperience }) => {
         );
       })}
       <br />
-
-      <Form.Button primary onClick={addExperience} type="button">
-        Add a new work experience
-      </Form.Button>
+      <div className="button-style">
+        <Form.Button primary onClick={addExperience} type="button">
+          Add a new work experience
+        </Form.Button>
+      </div>
       <br />
     </Form.Group>
   );

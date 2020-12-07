@@ -68,7 +68,12 @@ function SignUp() {
           onChange={handleChangeRole}
         />
       </Form.Field>
-      <Button onClick={handleSignUp}>Sign Up</Button>
+      <div className="button-style">
+        <Button primary onClick={handleSignUp}>
+          SIGN UP
+        </Button>
+      </div>
+
       {redirectRoute && <Redirect to={redirectRoute} />}
     </Form>
   );

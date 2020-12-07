@@ -2,18 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 import "../styles/Home.css";
+import "../styles/buttonStyling.css";
 
 const Home = () => {
   return (
     <div>
       <header className="home-header">
         <h1>Diversi-Hire</h1>
-        <div>
+        <div className="button-style">
           <Button fluid primary as={Link} to="/login">
-            Login{" "}
+            LOGIN{" "}
           </Button>
+        </div>
+        <div className="button-style">
           <Button fluid primary as={Link} to="/signup">
-            Sign Up{" "}
+            SIGN UP{" "}
           </Button>
         </div>
       </header>

@@ -105,10 +105,11 @@ const ApplicantProfile = () => {
         handleExperience={handleExperience}
         addExperience={addExperience}
       />
-
-      <Form.Button primary onClick={createProfile} type="submit">
-        Create Profile
-      </Form.Button>
+      <div className="button-style">
+        <Form.Button primary onClick={createProfile} type="submit">
+          Create Profile
+        </Form.Button>
+      </div>
       {profileCreated && <Redirect to="/profile-creation-successful" />}
       {profileCreated === false && (
         <div>Error! You have NOT created a profile</div>

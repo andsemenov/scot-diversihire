@@ -66,21 +66,23 @@ const ContactApplicantButton = props => {
         </Form>
       </Modal.Content>
       <Modal.Actions>
-        <Button
-          content="Contact Applicant"
-          primary
-          onClick={() => {
-            sendMessage(message).then(res => {
-              props.updateApplicantPublicIds(
-                props.profilePublicId,
-                props.index
-              );
-              setMessageSent(res);
-              setOpen(false);
-            });
-          }}
-          positive
-        />
+        <div className="button-style">
+          <Button
+            content="Contact Applicant"
+            primary
+            onClick={() => {
+              sendMessage(message).then(res => {
+                props.updateApplicantPublicIds(
+                  props.profilePublicId,
+                  props.index
+                );
+                setMessageSent(res);
+                setOpen(false);
+              });
+            }}
+            positive
+          />
+        </div>
       </Modal.Actions>
     </Modal>
   );
