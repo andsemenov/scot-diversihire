@@ -52,7 +52,7 @@ router.get(
           res.send(500);
         });
     } else {
-      res.send("you falled authorisation");
+      res.sendStatus(403);
     }
   }
 );
