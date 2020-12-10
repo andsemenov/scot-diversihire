@@ -52,7 +52,7 @@ router.get(
           res.send(500);
         });
     } else {
-      res.sendStatus(403);
+      res.status(403).send("User must have the recruiter role");
     }
   }
 );
