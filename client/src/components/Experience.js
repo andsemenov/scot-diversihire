@@ -67,9 +67,6 @@ const Experience = ({ handleExperience, experiences, addExperience }) => {
         );
       })}
       <br />
-      {/* <Form.Button primary onClick={addExperience} type="button">
-          Add a new work experience
-        </Form.Button> */}
       <Form>
         <CustomButton
           title="Add a new work experience"
