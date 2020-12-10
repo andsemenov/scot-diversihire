@@ -1,14 +1,7 @@
 import React from "react";
-import {
-  Form,
-  Button,
-  Modal,
-  TextArea,
-  Icon,
-  Header,
-  Grid
-} from "semantic-ui-react";
+import { Form, Modal, TextArea, Icon, Header, Grid } from "semantic-ui-react";
 import { sendMessage } from "../api/messages";
+import CustomButton from "./CustomButton";
 
 const ContactApplicantButton = props => {
   const [open, setOpen] = React.useState(false);
@@ -38,9 +31,11 @@ const ContactApplicantButton = props => {
       onOpen={() => setOpen(true)}
       open={open}
       trigger={
-        <Button disabled={props.isDisabled} fluid primary>
-          {props.isDisabled ? "Contacted" : "Contact Applicant"}
-        </Button>
+        <CustomButton
+          disabled={props.isDisabled}
+          fluid
+          title={props.isDisabled ? "Contacted" : "Contact Applicant"}
+        />
       }
     >
       <Modal.Header>
@@ -66,9 +61,8 @@ const ContactApplicantButton = props => {
         </Form>
       </Modal.Content>
       <Modal.Actions>
-        <Button
-          content="Contact Applicant"
-          primary
+        <CustomButton
+          title="Contact Applicant"
           onClick={() => {
             sendMessage(message).then(res => {
               props.updateApplicantPublicIds(
