@@ -1,24 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button } from "semantic-ui-react";
+import CustomButton from "./CustomButton";
 import "../styles/Home.css";
-import "../styles/buttonStyling.css";
 
 const Home = () => {
   return (
     <div>
       <header className="home-header">
         <h1>Diversi-Hire</h1>
-        <div className="button-style">
-          <Button fluid primary as={Link} to="/login">
-            LOGIN{" "}
-          </Button>
-        </div>
-        <div className="button-style">
-          <Button fluid primary as={Link} to="/signup">
-            SIGN UP{" "}
-          </Button>
-        </div>
+        <CustomButton title="LOGIN" as={Link} to="/login" />
+        <CustomButton title="SIGN UP" as={Link} to="/signup" />
       </header>
     </div>
   );

@@ -1,10 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
-body {
-  font-family: "Montserrat", sans-serif;
-}
-
-.button-style .ui.primary.button {
+.ui.button.custom-button {
   color: white;
   background: #353535;
   font-family: "Montserrat", sans-serif;
@@ -13,4 +9,5 @@ body {
   padding: 12px 30px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border: none;
+  margin: 30px auto;
 }

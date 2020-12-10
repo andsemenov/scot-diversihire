@@ -4,7 +4,7 @@ import { Grid, Label, Button, Segment, Header } from "semantic-ui-react";
 import { getAllProfiles } from "../api/profiles";
 import { getRecruiterMessages } from "../api/messages";
 import ContactApplicantButton from "./ContactApplicantButton";
-import "../styles/ApplicantsList.css";
+import CustomButton from "./CustomButton";
 
 const ApplicantsList = () => {
   const [profiles, setProfiles] = useState([]);
@@ -64,19 +64,17 @@ const ApplicantsList = () => {
           </Grid.Column>
 
           <Grid.Column key={key + "9g"} width={3}>
-            <div key={key + "10d"} className="button-style">
-              <Button
+            <div key={key + "10d"}>
+              <CustomButton
+                title="View Profile"
                 key={key + "11b"}
                 fluid
-                primary
                 as={Link}
                 to={`/public-applicant-profiles/${profile.profile_public_id}`}
-              >
-                View Profile
-              </Button>
+              />
             </div>
 
-            <div key={key + "12d"} className="button-style">
+            <div key={key + "12d"}>
               <ContactApplicantButton
                 profilePublicId={profile.profile_public_id}
                 to={`/public-applicant-profiles/${profile.profile_public_id}`}
