@@ -26,7 +26,7 @@ router.post(
       const { experiences } = req.body;
       const newProfile = await createProfile(db_newProfile);
       await Promise.all(
-        experiences.map((experience) =>
+        experiences.map(experience =>
           createWorkExperience({ ...experience, profile_id: newProfile.id })
         )
       );
@@ -38,16 +38,24 @@ router.post(
   }
 );
 
-router.get("/", (req, res) => {
-  getAllProfiles()
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.send(500);
-    });
-});
+router.get(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    if (req.user.role === "recruiter") {
+      getAllProfiles()
+        .then(data => {
+          res.send(data);
+        })
+        .catch(err => {
+          console.error(err);
+          res.send(500);
+        });
+    } else {
+      res.status(403).send("User must have the recruiter role");
+    }
+  }
+);
 
 router.get("/:public_id", async (req, res) => {
   const id = req.params.public_id;
