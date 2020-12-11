@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Button, Form } from "semantic-ui-react";
+import { Form } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 import { getProfileByApplicantId } from "../api/profiles";
 import { signApi } from "../api/auth";
+import CustomButton from "./CustomButton";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -14,7 +15,7 @@ const Login = () => {
   useEffect(() => {
     const fetchProfile = async applicantId => {
       const response = await getProfileByApplicantId(applicantId);
-      if (!response.length) {
+      if (response.length) {
         setRedirectRoute("/applicant-inbox");
       } else setRedirectRoute("/applicant-create-profile");
     };
@@ -71,9 +72,7 @@ const Login = () => {
           placeholder="Password"
         />
       </Form.Field>
-      <Button primary onClick={loginSubmit} type="submit">
-        Login
-      </Button>
+      <CustomButton title="LOGIN" onClick={loginSubmit} type="submit" />
       {error ? <div>Incorrect email or password</div> : null}
       {redirectRoute && <Redirect to={redirectRoute} />}
     </Form>

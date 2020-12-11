@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Button, Form, Radio } from "semantic-ui-react";
+import { Form, Radio } from "semantic-ui-react";
 import { signUp } from "../api/auth";
 import { Redirect } from "react-router-dom";
+import CustomButton from "./CustomButton";
 
 function SignUp() {
   const [email, setEmail] = useState("");
@@ -68,7 +69,7 @@ function SignUp() {
           onChange={handleChangeRole}
         />
       </Form.Field>
-      <Button onClick={handleSignUp}>Sign Up</Button>
+      <CustomButton title="SIGN UP" onClick={handleSignUp} />
       {redirectRoute && <Redirect to={redirectRoute} />}
     </Form>
   );

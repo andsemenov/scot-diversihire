@@ -3,6 +3,7 @@ import { Form } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 import { newProfile } from "../api/profiles";
 import Experience from "./Experience";
+import CustomButton from "./CustomButton";
 
 const ApplicantProfile = () => {
   const defaultExperience = {
@@ -105,7 +106,6 @@ const ApplicantProfile = () => {
         handleExperience={handleExperience}
         addExperience={addExperience}
       />
-
       <Form.Button primary type="submit">
         Create Profile
       </Form.Button>

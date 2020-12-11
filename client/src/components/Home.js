@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button } from "semantic-ui-react";
+import CustomButton from "./CustomButton";
 import "../styles/Home.css";
 
 const Home = () => {
@@ -8,14 +8,8 @@ const Home = () => {
     <div>
       <header className="home-header">
         <h1>Diversi-Hire</h1>
-        <div>
-          <Button fluid primary as={Link} to="/login">
-            Login{" "}
-          </Button>
-          <Button fluid primary as={Link} to="/signup">
-            Sign Up{" "}
-          </Button>
-        </div>
+        <CustomButton title="LOGIN" as={Link} to="/login" />
+        <CustomButton title="SIGN UP" as={Link} to="/signup" />
       </header>
     </div>
   );

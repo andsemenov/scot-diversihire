@@ -1,6 +1,7 @@
 import React from "react";
 import { Form } from "semantic-ui-react";
 import { DateInput } from "semantic-ui-calendar-react";
+import CustomButton from "./CustomButton";
 
 const Experience = ({ handleExperience, experiences, addExperience }) => {
   return (
@@ -66,10 +67,13 @@ const Experience = ({ handleExperience, experiences, addExperience }) => {
         );
       })}
       <br />
-
-      <Form.Button primary onClick={addExperience} type="button">
-        Add a new work experience
-      </Form.Button>
+      <Form>
+        <CustomButton
+          title="Add a new work experience"
+          onClick={addExperience}
+          type="button"
+        />
+      </Form>
       <br />
     </Form.Group>
   );
