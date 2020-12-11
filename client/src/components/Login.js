@@ -14,7 +14,7 @@ const Login = () => {
   useEffect(() => {
     const fetchProfile = async applicantId => {
       const response = await getProfileByApplicantId(applicantId);
-      if (!response.length) {
+      if (response.length) {
         setRedirectRoute("/applicant-inbox");
       } else setRedirectRoute("/applicant-create-profile");
     };
