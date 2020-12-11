@@ -106,9 +106,7 @@ const ApplicantProfile = () => {
         handleExperience={handleExperience}
         addExperience={addExperience}
       />
-      <Form.Button primary type="submit">
-        Create Profile
-      </Form.Button>
+      <CustomButton title="Create Profile" type="submit" />
       {profileCreated && <Redirect to="/profile-creation-successful" />}
       {profileCreated === false && (
         <div>Error! You have NOT created a profile</div>
