@@ -37,6 +37,10 @@
   padding: 0;
 }
 
+.ui.segment {
+  border-radius: 0;
+}
+
 @media (max-width: 450px) {
   .ui.segment.header-all {
     flex-direction: column;

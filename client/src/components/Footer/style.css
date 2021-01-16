@@ -1,0 +1,146 @@
+.ui.segment.footer-all {
+  margin: 0;
+  padding: 0;
+  background-color: rgba(17, 17, 17, 1);
+}
+
+.ui.segment.footer-all div {
+  background-color: rgba(17, 17, 17, 1);
+}
+
+.ui.segment.footer-content {
+  padding: 0;
+  margin-left: 4%;
+  margin-right: 4%;
+}
+
+.ui.segment.footer-top {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 0;
+}
+
+.ui.horizontal.list.custom-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ui.horizontal.list.custom-list a {
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 96%;
+  padding: 0;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.ui.horizontal.list.custom-list a.item {
+  padding: 0;
+}
+
+.ui.segment.social-media {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.follow-us {
+  margin: 0px 10px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 96%;
+
+  color: rgba(255, 255, 255, 1);
+}
+
+.ui.social-icons.menu .item {
+  margin: 0;
+  padding: 0;
+}
+
+.ui.segment.social-media {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.big.icon {
+  color: rgba(255, 255, 255, 1);
+}
+
+.ui.social-icons.menu {
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ui.menu .item .youtube.big.icon {
+  margin: 0;
+}
+
+.ui.horizontal.divider.divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 1);
+  margin: 0;
+}
+
+.ui.segment.footer-bottom {
+  margin: 0;
+  padding: 0;
+}
+
+.ui.segment.language-block {
+  padding: 24px 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ui.segment.language-block .language {
+  color: rgba(255, 255, 255, 1);
+  margin: 0px 10px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 96%;
+}
+
+.ui.segment.language-block .language-value {
+  color: rgba(255, 255, 255, 1);
+  margin-right: 10px;
+  margin-left: 10px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 96%;
+}
+
+@media (max-width: 800px) {
+  .ui.segment.footer-top {
+    flex-direction: column;
+    align-items: center;
+  }
+  .ui.segment.footer-bottom {
+    display: flex;
+    justify-content: center;
+  }
+  .ui.segment.footer-top {
+    padding: 10px 0;
+  }
+  .ui.segment.social-media {
+    margin-top: 10px;
+  }
+}

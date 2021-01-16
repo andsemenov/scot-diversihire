@@ -11,6 +11,7 @@ import SuccessMessage from "./components/SuccessMessage";
 import ViewApplicantProfile from "./components/ViewApplicantProfile";
 import ApplicantsList from "./components/ApplicantsList";
 import ApplicantInbox from "./components/ApplicantInbox";
+import Footer from "./components/Footer";
 
 const Routes = () => {
   return (
@@ -34,6 +35,7 @@ const Routes = () => {
         path="/public-applicant-profiles/:id"
         component={ViewApplicantProfile}
       />
+      <Footer />
     </Router>
   );
 };
