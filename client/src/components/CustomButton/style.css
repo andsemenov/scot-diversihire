@@ -4,7 +4,9 @@
   color: white;
   background: #353535;
   font-family: "Montserrat", sans-serif;
-  font-size: 15px;
+  font-size: 14px;
+  line-height: 12px;
+  font-weight: 900;
   border-radius: 24px;
   padding: 12px 30px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

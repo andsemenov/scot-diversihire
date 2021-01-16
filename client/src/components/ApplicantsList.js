@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Grid, Label, Button, Segment, Header } from "semantic-ui-react";
+import { Grid, Label, Segment, Header } from "semantic-ui-react";
 import { getAllProfiles } from "../api/profiles";
 import { getRecruiterMessages } from "../api/messages";
 import ContactApplicantButton from "./ContactApplicantButton";
