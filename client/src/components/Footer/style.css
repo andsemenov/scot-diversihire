@@ -20,7 +20,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 22px 0;
+  padding: 18px 0;
 }
 
 .ui.horizontal.list.custom-list {
@@ -98,7 +98,7 @@
 
 .ui.segment.footer-bottom {
   margin: 0;
-  padding: 0;
+  padding: 2px 0;
 }
 
 .ui.segment.language-block {
@@ -142,5 +142,18 @@
   }
   .ui.segment.social-media {
     margin-top: 10px;
+  }
+}
+
+@media (max-width: 340px) {
+  .ui.horizontal.list.custom-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+  }
+
+  .item {
+    margin-bottom: 10px;
   }
 }
