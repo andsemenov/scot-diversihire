@@ -6,3 +6,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.ui.form {
+  flex-grow: 1;
+}
+
+.inbox-container {
+  flex-grow: 1;
+}

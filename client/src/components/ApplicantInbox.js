@@ -21,7 +21,7 @@ const ApplicantInbox = () => {
   }, [user, messages]);
 
   return (
-    <div>
+    <div className="inbox-container">
       <Segment>
         <h1> Applicant Inbox </h1>
         {messages.map(message => (
