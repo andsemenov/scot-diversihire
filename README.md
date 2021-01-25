@@ -1,5 +1,6 @@
 # People who are working on the Diversi-Hire project are :
 
+test
 Developers:
 Andrei
 Aras
