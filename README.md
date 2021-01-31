@@ -1,3 +1,7 @@
+- validation Login page
+- css design all pages
+- MenuHeader for all pages
+
 # People who are working on the Diversi-Hire project are :
 
 test

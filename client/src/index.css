@@ -7,10 +7,127 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.ui.form {
+.ui.segment.login,
+.ui.segment.signup {
   flex-grow: 1;
+  margin: 0;
+  padding: 0;
+}
+
+.ui.header.signup-title,
+.ui.header.login-title {
+  font-family: Montserrat;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 60px;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: #222222;
+  margin: 0;
+}
+
+.ui.form.signup-body,
+.ui.form.login-body {
+  background: #f3f6fa;
+  border-radius: 16px;
+}
+
+.ui.form .field > label {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 60px;
+  letter-spacing: -0.02em;
+  color: #000000;
+}
+
+.radio.checkbox {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 60px;
+  letter-spacing: -0.02em;
+}
+
+.ui.radio.checkbox > label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .inbox-container {
   flex-grow: 1;
+}
+
+.ui.segment.success-message-all {
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+  display: flex;
+  background: rgba(255, 255, 255, 1);
+  /*   align-items: flex-start; */
+}
+
+.ui.message.success-message {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  margin-left: 50px;
+  margin-top: 50px;
+  height: fit-content;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: none;
+  border-radius: none;
+}
+
+a.ui.button.custom-button {
+  margin: 0;
+}
+
+.ui.header.success-message-header {
+  font-family: Montserrat;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 94%;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: rgba(34, 34, 34, 1);
+  margin-bottom: 30px;
+}
+
+.ui.message .message-text {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 167%;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: rgba(34, 34, 34, 1);
+}
+
+.ui.message.success-message .ui.button.custom-button {
+  color: #353535;
+  background: #ffffff;
+  border: 2px solid #000000;
+  text-transform: uppercase;
+}
+
+@media (max-width: 450px) {
+  .ui.message.success-message {
+    margin: 5%;
+  }
+  .ui.header.success-message-header {
+    font-size: 32px;
+  }
+  .ui.message .message-text {
+    font-size: 12px;
+  }
+  .ui.segment.success-message-all {
+  }
 }

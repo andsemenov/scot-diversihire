@@ -1,4 +1,4 @@
-.slogan {
+.ui.header.slogan {
   font-family: Montserrat;
   font-style: italic;
   font-weight: bold;
@@ -27,7 +27,7 @@
 }
 
 @media (max-width: 544px) {
-  .slogan {
-    font-size: 40px;
+  .ui.header.slogan {
+    font-size: 36px;
   }
 }

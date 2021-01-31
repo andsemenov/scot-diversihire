@@ -16,10 +16,8 @@ import Footer from "./components/Footer";
 const Routes = () => {
   return (
     <Router>
-      {/*   <MenuHeader /> */}
+      <MenuHeader />
       <Route path="/" exact component={Home} />
-      <Route path="/about/" component={About} />
-      <Route path="/status/" component={Status} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={SignUp} />
       <Route path="/applicant-create-profile" component={ApplicantProfile} />

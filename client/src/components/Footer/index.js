@@ -8,7 +8,7 @@ const Footer = () => (
   <Segment className="footer-all">
     <Segment className="footer-content">
       <Segment className="footer-top">
-        <List className="custom-list" horizontal>
+        <List className="custom-list" /* horizontal */>
           <List.Item to="" as={Link}>
             TERMS & CONDITIONS
           </List.Item>
@@ -24,7 +24,7 @@ const Footer = () => (
         </List>
         <Segment className="social-media">
           <p className="follow-us">FOLLOW US</p>
-          <Menu className="social-icons" horizontal>
+          <Menu className="social-icons" /* horizontal */>
             <Menu.Item href="http://" target="_blank">
               <Icon name="instagram" size="big" />
             </Menu.Item>
@@ -40,7 +40,7 @@ const Footer = () => (
           </Menu>
         </Segment>
       </Segment>
-      <Divider className="divider" horizontal />
+      <Divider className="divider" />
       <Segment className="footer-bottom">
         <Segment className="language-block">
           <p className="language">LANGUAGE:</p>

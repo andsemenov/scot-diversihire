@@ -1,0 +1,124 @@
+.ui.segment.header-all {
+  padding: 0;
+  background-color: rgba(19, 19, 19, 1);
+  padding-left: 5.21%;
+  padding-right: 5.21%;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  height: 84px;
+}
+
+.logo {
+  display: flex;
+  margin: 0;
+  color: rgba(255, 255, 255, 1);
+  font-family: Montserrat;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.ui.list.buttons-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0;
+}
+
+.ui.list.buttons-block .item {
+  margin: 0 15px;
+  padding: 0;
+}
+
+a.ui.button.custom-button {
+  margin-bottom: 23px;
+  margin-top: 23px;
+}
+
+.ui.segment {
+  border-radius: 0;
+}
+
+.ui.segment.header-links {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.ui.list.link-block {
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 0 5%;
+}
+
+.ui.list.link-block .item {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 1);
+  padding: 0;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.ui.segment.header-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: -webkit-fill-available;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(19, 19, 19, 1);
+}
+
+@media (max-width: 560px) {
+  .ui.segment.header-all {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    padding-top: 20px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .ui.list.link-block {
+    margin: 0;
+  }
+}
+
+@media (max-width: 450px) {
+  .ui.segment.header-all > .logo {
+    /*  padding-top: 20px; */
+    align-items: flex-start;
+  }
+
+  .ui.segment.header-nav {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .ui.list.link-block .item {
+    margin: 0 10px;
+  }
+  .ui.button.custom-button {
+    margin: 0;
+  }
+
+  .logo {
+    margin-bottom: 20px;
+  }
+}
