@@ -2,6 +2,8 @@
 - css design all pages
 - MenuHeader for all pages
 
+Source: https://github.com/CodeYourFuture/scot-diversihire
+
 # People who are working on the Diversi-Hire project are :
 
 test
