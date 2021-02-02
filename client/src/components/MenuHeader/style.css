@@ -33,13 +33,8 @@
 }
 
 .ui.list.buttons-block .item {
-  margin: 0 15px;
+  margin: 15px;
   padding: 0;
-}
-
-a.ui.button.custom-button {
-  margin-bottom: 23px;
-  margin-top: 23px;
 }
 
 .ui.segment {
@@ -84,7 +79,7 @@ a.ui.button.custom-button {
   background-color: rgba(19, 19, 19, 1);
 }
 
-@media (max-width: 560px) {
+@media (max-width: 600px) {
   .ui.segment.header-all {
     flex-direction: column;
     align-items: center;
@@ -96,6 +91,8 @@ a.ui.button.custom-button {
   }
   .ui.list.link-block {
     margin: 0;
+  }
+  .ui.list.buttons-block .item {
   }
 }
 

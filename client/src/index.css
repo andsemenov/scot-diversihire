@@ -68,7 +68,6 @@ body {
   flex-grow: 1;
   display: flex;
   background: rgba(255, 255, 255, 1);
-  /*   align-items: flex-start; */
 }
 
 .ui.message.success-message {
@@ -82,10 +81,6 @@ body {
   background: rgba(255, 255, 255, 1);
   box-shadow: none;
   border-radius: none;
-}
-
-a.ui.button.custom-button {
-  margin: 0;
 }
 
 .ui.header.success-message-header {
@@ -116,6 +111,7 @@ a.ui.button.custom-button {
   background: #ffffff;
   border: 2px solid #000000;
   text-transform: uppercase;
+  margin: 0;
 }
 
 @media (max-width: 450px) {
@@ -127,7 +123,5 @@ a.ui.button.custom-button {
   }
   .ui.message .message-text {
     font-size: 12px;
-  }
-  .ui.segment.success-message-all {
   }
 }

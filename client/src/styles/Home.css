@@ -10,14 +10,6 @@
   flex-direction: column;
 }
 
-.ui.segment.footer-all {
-  flex-shrink: 0;
-}
-
-.ui.segment.header-all {
-  flex-shrink: 0;
-}
-
 .ui.segment.banner {
   margin: 0;
   padding: 0;
