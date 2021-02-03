@@ -117,9 +117,24 @@ body {
 
 .field.email-input .ui.input input,
 .field.password-input .ui.input input {
+  background: #ffffff;
+  /* CardShadow */
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
   border-radius: 24px;
-  background: #222222;
+  /*   width: 567px;
+  height: 48px; */
 }
+
+.ui.form .field .ui.input {
+  width: 560px;
+}
+
+/* .ui.checkbox input[type="checkbox"], 
+.ui.checkbox input[type="radio"] {
+  position: relative; 
+  width: 34px;
+  height: 34px;
+} */
 
 @media (max-width: 450px) {
   .ui.message.success-message {
