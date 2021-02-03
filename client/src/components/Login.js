@@ -39,14 +39,14 @@ const Login = () => {
       setPasswordError(!isPassword(event.target.value));
     }
 
-    //if (!passwordError && !emailError) setButtonDisabled(false);
+    // if (!passwordError && !emailError) setButtonDisabled(false);
   };
 
   const loginSubmit = (event) => {
     event.preventDefault();
     setEmailError(!isEmail(email));
     setPasswordError(!isPassword(password));
-    if (!passwordError && !emailError && password.length && email.length)
+    if (!passwordError && !emailError && password && email)
       signApi(email, password)
         .then((data) => {
           const token = data.token;
@@ -79,6 +79,7 @@ const Login = () => {
       </Header>
       <Form className="login-body" onSubmit={loginSubmit}>
         <Form.Input
+          className="email-input"
           label="Email"
           autoComplete="off"
           error={emailError && { content: "Please input a valid email" }}
@@ -92,6 +93,7 @@ const Login = () => {
         />
 
         <Form.Input
+          className="password-input"
           label="Password"
           autoComplete="off"
           error={
