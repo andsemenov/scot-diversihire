@@ -10,12 +10,19 @@ function SignUp() {
   const [role, setRole] = useState("");
   const [redirectRoute, setRedirectRoute] = useState("");
 
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [roleError, setRoleError] = useState(false);
+
   const handleChange = (event) => {
     if (event.target.name === "email") {
       setEmail(event.target.value);
+      setEmailError(!isEmail(event.target.value));
     }
     if (event.target.name === "password") {
       setPassword(event.target.value);
+      setPasswordError(!isPassword(event.target.value));
     }
   };
 
@@ -23,11 +30,19 @@ function SignUp() {
     setRole(value);
   };
   const handleSignUp = () => {
-    if (email && password && role) {
+    if (email && password && role && !emailError && !passwordError) {
       signUp({ email, password, role }).then((response) => {
         setRedirectRoute("/login");
       });
     }
+  };
+
+  const isEmail = (email) => {
+    return /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email);
+  };
+
+  const isPassword = (password) => {
+    return /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(password);
   };
 
   return (
@@ -35,28 +50,39 @@ function SignUp() {
       <Header className="signup-title" as="h1">
         SIGN UP
       </Header>
-      <Form className="signup-body">
-        <Form.Field>
-          <label className="email-label">Email</label>
-          <input
-            onChange={handleChange}
-            name="email"
-            type="email"
-            placeholder="Email"
-            required
-          />
-        </Form.Field>
-        <Form.Field>
-          <label className="password-label">Password</label>
-          <input
-            onChange={handleChange}
-            name="password"
-            type="password"
-            placeholder="Password"
-            required
-          />
-        </Form.Field>
-
+      <Form className="signup-body" onSubmit={handleSignUp}>
+        <Form.Input
+          className="email-input"
+          label="Email"
+          autoComplete="off"
+          error={emailError && { content: "Please input a valid email" }}
+          onChange={handleChange}
+          name="email"
+          value={email}
+          placeholder="Email"
+          onBlur={(e) => {
+            setEmailError(!email);
+          }}
+        />
+        <Form.Input
+          className="password-input"
+          label="Password"
+          autoComplete="off"
+          error={
+            passwordError && {
+              content:
+                "Password should have at least one number, one lowercase and one uppercase letter, at least six characters",
+            }
+          }
+          onChange={handleChange}
+          name="password"
+          placeholder="Password"
+          value={password}
+          type="password"
+          onBlur={(e) => {
+            setPasswordError(!password);
+          }}
+        />
         <Form.Field>
           <Radio
             label="I am an Applicant"
@@ -75,7 +101,7 @@ function SignUp() {
             onChange={handleChangeRole}
           />
         </Form.Field>
-        <CustomButton title="SIGN UP" onClick={handleSignUp} />
+        <CustomButton title="SIGN UP" type="submit" />
         {redirectRoute && <Redirect to={redirectRoute} />}
       </Form>
     </Segment>
