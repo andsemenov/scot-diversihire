@@ -7,20 +7,6 @@ Source: https://github.com/CodeYourFuture/scot-diversihire
 # People who are working on the Diversi-Hire project are :
 
 test
-Developers:
-Andrei
-Aras
-Marina
-Munish
-Sharlu
-
-PM and TAs
-
-Alastair H
-Alastair C
-Loic
-Mohammed
-Greg
 
 # Get started
 
