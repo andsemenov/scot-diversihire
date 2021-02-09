@@ -117,8 +117,32 @@ body {
 
 .field.email-input .ui.input input,
 .field.password-input .ui.input input {
+  background: #ffffff;
+  /* CardShadow */
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
   border-radius: 24px;
-  background: #222222;
+  /*   width: 567px;
+  height: 48px; */
+}
+
+.ui.form .field .ui.input {
+  width: 60%;
+}
+
+/* .ui.checkbox input[type="checkbox"], 
+.ui.checkbox input[type="radio"] {
+  position: relative; 
+  width: 34px;
+  height: 34px;
+} */
+
+.ui.form .field {
+  margin: 0;
+}
+
+.ui.form.login-body .ui.button.custom-button,
+.ui.form.signup-body .ui.button.custom-button {
+  margin: 0;
 }
 
 @media (max-width: 450px) {
