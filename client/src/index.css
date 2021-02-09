@@ -126,7 +126,7 @@ body {
 }
 
 .ui.form .field .ui.input {
-  width: 560px;
+  width: 60%;
 }
 
 /* .ui.checkbox input[type="checkbox"], 
@@ -135,6 +135,15 @@ body {
   width: 34px;
   height: 34px;
 } */
+
+.ui.form .field {
+  margin: 0;
+}
+
+.ui.form.login-body .ui.button.custom-button,
+.ui.form.signup-body .ui.button.custom-button {
+  margin: 0;
+}
 
 @media (max-width: 450px) {
   .ui.message.success-message {
