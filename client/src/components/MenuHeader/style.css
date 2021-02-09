@@ -33,7 +33,7 @@
 }
 
 .ui.list.buttons-block .item {
-  margin: 15px;
+  margin: 10px;
   padding: 0;
 }
 
@@ -79,6 +79,10 @@
   background-color: rgba(19, 19, 19, 1);
 }
 
+.ui.button.custom-button {
+  margin: 0;
+}
+
 @media (max-width: 600px) {
   .ui.segment.header-all {
     flex-direction: column;
@@ -92,8 +96,10 @@
   .ui.list.link-block {
     margin: 0;
   }
-  .ui.list.buttons-block .item {
-  }
+
+  /*   .item .ui.button.custom-button {
+    margin: 0;
+  } */
 }
 
 @media (max-width: 450px) {
@@ -108,14 +114,15 @@
     justify-content: space-between;
   }
 
-  .ui.list.link-block .item {
+  /*   .ui.list.link-block .item {
     margin: 0 10px;
-  }
-  .ui.button.custom-button {
-    margin: 0;
+  } */
+
+  .ui.list.link-block {
+    justify-content: center;
   }
 
   .logo {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 }

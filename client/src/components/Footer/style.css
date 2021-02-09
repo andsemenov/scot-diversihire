@@ -158,7 +158,7 @@
     align-content: space-around;
   }
 
-  .item {
+  .ui.segment.footer-top .item {
     margin-bottom: 10px;
   }
 }
